@@ -32,7 +32,9 @@ class App extends Component {
     this.state = {
       searchQuery: {
         word: "",
+
         numSyllables: "",
+
       },
     };
   }
@@ -51,10 +53,17 @@ class App extends Component {
         <Header />
 
         <main>
+
           <Search updateSearchQuery={this.updateSearchQuery} />
           <Haiku />
 
+
+          <Haiku 
+            word={this.state.word}
+            sylls={this.state.numberOfSylls}
+          />
           {/* Strech goal: display haikus */}
+
         </main>
 
         <Footer />
