@@ -32,7 +32,7 @@ class App extends Component {
     this.state = {
       searchQuery: {
         word: "",
-        numberOfSylls: "",
+        numSyllables: "",
       },
     };
   }
