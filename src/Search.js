@@ -5,34 +5,9 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      searchQuery: {
-        word: "",
-        numSyllables: "",
-      },
       suggestions: "",
     };
   }
-
-  // getWordInfo = (word) => {
-  //   word
-  //     ? axios({
-  //         url: "https://api.datamuse.com/words",
-  //         responseType: "json",
-  //         method: "GET",
-  //         params: {
-  //           sp: word,
-  //           md: "s",
-  //         },
-  //       })
-  //         .then(({ data }) => {
-  //           console.log(data[0]);
-  //           this.updateSearchQuery(data[0]);
-  //         })
-  //         .catch(() => {
-  //           console.log("no such word");
-  //         })
-  //     : this.updateSearchQuery({ word: "", numSyllables: "" });
-  // };
 
   getSuggestions = (word) => {
     axios({
@@ -55,13 +30,24 @@ class Search extends Component {
     });
   };
 
-  updateSearchQuery = ({ word, numSyllables }) => {
-    this.setState({
-      searchQuery: {
-        word: word,
-        numSyllables: numSyllables,
+  getWordInfo = (e) => {
+    const word = e.target.dataset.name;
+    axios({
+      url: "https://api.datamuse.com/words",
+      responseType: "json",
+      method: "GET",
+      params: {
+        sp: word,
+        md: "s",
       },
-    });
+    })
+      .then(({ data }) => {
+        console.log(data[0]);
+        this.props.updateSearchQuery(data[0]);
+      })
+      .catch(() => {
+        console.log("no such word");
+      });
   };
 
   render() {
@@ -82,7 +68,15 @@ class Search extends Component {
         <ul>
           {this.state.suggestions &&
             this.state.suggestions.map((word) => {
-              return <p>{word.word}</p>;
+              return (
+                <li
+                  key={word.score}
+                  onClick={this.getWordInfo}
+                  data-name={word.word}
+                >
+                  {word.word}
+                </li>
+              );
             })}
         </ul>
       </section>
@@ -90,6 +84,4 @@ class Search extends Component {
   }
 }
 
-
 export default Search;
-
