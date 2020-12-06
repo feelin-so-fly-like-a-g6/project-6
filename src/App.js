@@ -1,11 +1,12 @@
-import { Component } from 'react';
-import './App.css';
-import Header from './Header';
-import Footer from './Footer'
-import Haiku from './Haiku'
+import { Component } from "react";
+import "./App.css";
+import Header from "./Header";
+import Search from "./Search";
+import Footer from "./Footer";
+import Haiku from "./Haiku";
 // PSEUDO CODE
-// User inputs a first word - we grab that input value 
-// On change OR on submit: Make an API call to get the number of syllables: 
+// User inputs a first word - we grab that input value
+// On change OR on submit: Make an API call to get the number of syllables:
 // If the user enters a word that has more than 5 syllables
 // Error handling  - if there the word is not a word
 // Provide a visual indicator (color)
@@ -19,27 +20,24 @@ import Haiku from './Haiku'
 // Once the user selects the word, the line is then complete OR we make another API call to get the following word.
 // Display message (stretch goal - option to save) when the user has completed their haiku
 
-
 //endpoint: https://api.datamuse.com/words
 //Params:
 //rel_bga = user input = this.state.word
 //md = s - this is from the API, it returns the number of syllables for each result
 
-
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      searchQuery:{
-        word:'',
-        numberOfSylls:''
-      }
-    }
+      searchQuery: {
+        word: "",
+        numberOfSylls: "",
+      },
+    };
   }
-  render(){
+  render() {
     return (
       <div className="App">
-        
         <Header />
 
         <main>
@@ -47,11 +45,9 @@ class App extends Component {
           <Haiku />
 
           {/* Strech goal: display haikus */}
-        
         </main>
 
-        < Footer />
-        
+        <Footer />
       </div>
     );
   }
