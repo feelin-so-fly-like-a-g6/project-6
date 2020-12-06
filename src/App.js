@@ -1,9 +1,10 @@
-import { Component } from "react";
-import "./App.css";
-import Header from "./Header";
-import Search from "./Search";
-import Footer from "./Footer";
-import Haiku from "./Haiku";
+import { Component } from 'react';
+import './App.css';
+import Header from './Header';
+import Search from './Search';
+import Footer from './Footer';
+import Haiku from './Haiku';
+
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
 // On change OR on submit: Make an API call to get the number of syllables:
