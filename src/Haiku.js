@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import axios from 'axios';
+import { Component } from "react";
+import axios from "axios";
 
 // LATEST UPDATE: 
 //Trying to figure out how to pass two values in the option value on line 136 (the word AND the numSyllables) so that we can retreive both. The word for the searc (and display of the line) and the numb of syllables so that we can keep count of how many syllable total we have, because we cannot exceed the 5 or 7, AND we must let the user knwo that they have reached the total number
@@ -10,6 +10,7 @@ import axios from 'axios';
 // Filter/other method that array of results to get the words with the correct number of syllables (ie if the user inputs a 2 syllable word, we will give them results with <= 3 syllables)
 
 class Haiku extends Component {
+
     constructor(){
         super();
         this.state = {
@@ -149,6 +150,7 @@ class Haiku extends Component {
             </div>
         )
     }
+
 }
 
 export default Haiku;
