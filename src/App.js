@@ -1,9 +1,9 @@
-import { Component } from 'react';
-import './App.css';
-import Header from './Header';
-import Search from './Search';
-import Footer from './Footer';
-import Haiku from './Haiku';
+import { Component } from "react";
+import "./App.css";
+import Header from "./Header";
+import Search from "./Search";
+import Footer from "./Footer";
+import Haiku from "./Haiku";
 
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
@@ -36,13 +36,22 @@ class App extends Component {
       },
     };
   }
+
+  updateSearchQuery = ({ word, numSyllables }) => {
+    this.setState({
+      searchQuery: {
+        word: word,
+        numSyllables: numSyllables,
+      },
+    });
+  };
   render() {
     return (
       <div className="App">
         <Header />
 
         <main>
-          <Search />
+          <Search updateSearchQuery={this.updateSearchQuery} />
           <Haiku />
 
           {/* Strech goal: display haikus */}
