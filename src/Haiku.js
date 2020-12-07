@@ -14,33 +14,28 @@ class Haiku extends Component {
     constructor(){
         super();
         this.state = {
-            lineCount: 5, //5 or 7 - passed in as prop
+            remainSylls: 5, //Number of Syllables remianing for the line PASS AS PROPS
 
-            line: '', //to display the full line (user word + selected words)
-            userSelect: '', //the word the user selects
-            userSelectSyll: null, //num of syllables for the selected words
-            totalSylls: null, //Could also be remaining
+            userSelect: {
+                word: "", //the word the user selects
+                numSyllables: null, //num of syllables for the selected words
+            },
+
+            lineInProgress: '', //to display the full line (user word + selected words)
             results: [], //array of words returns from the API call
         }
     }
 
 
-    //function to filter the array of results to only get the matching number of syllables
-    filterResults = () => {
-        //find the number of syllables needed
-        const syllsNeeded = this.state.lineCount - this.props.sylls;
-        console.log(syllsNeeded);
-    
-        //filter the array to find the words that have a syllable count that is smaller or equal to syllsNeeded
-        const filteredArray = this.state.results.filter((word) => {
-            return word.numSyllables <= syllsNeeded
-        })
+    //on mount - get words and set state
+    componentDidMount(){
+        //API call to get the words that normally follow the word in the user input
+        this.getWords(this.props.word);
 
-        //setState results with the filtered array
         this.setState({
-            results: filteredArray
+            lineInProgress: this.props.word,
+            totalSylls: this.props.sylls
         })
-        console.log(this.state.results);
     }
 
 
@@ -56,49 +51,56 @@ class Haiku extends Component {
                 md: 's',
             },
         }).then((response)=> {
-            this.setState({
-                results: response.data
-            })
             //call the function to filter the results
-            this.filterResults();
+            this.filterResults(response.data);
         })
     }
 
 
-    componentDidMount(){
-        //API call to get the words that normally follow the word in the user input
-        this.getWords(this.props.word);
+    //function to filter the array of results to only get the matching number of syllables
+    filterResults = (array) => {
+        //find the number of syllables needed
+        const syllsNeeded = this.state.remainSylls - this.props.sylls;
+        console.log(syllsNeeded);
+    
+        //filter the array to find the words that have a syllable count that is smaller or equal to syllsNeeded
+        const filteredArray = array.filter((word) => {
+            return word.numSyllables <= syllsNeeded
+        })
 
+        //setState results with the filtered array
         this.setState({
-            line: this.props.word,
-            totalSylls: this.props.sylls
+            results: filteredArray
         })
+        console.log(this.state.results);
     }
 
 
+    //handleselect to set that to the word and syllable count
     handleSelect = (input) => {
 
-        console.log(input.target.value);
         this.setState({
-            userSelect: input.target.value['word'],
-            //HOW TO GET NUMBER OF SYLLABLES
-            // userSelectSyll: 
+            userSelect: {
+                word:input.target.value
+                //HOW???
+                // numSyllables: 
+            }
         })
     }
 
 
     //When user selects a word
-        //call the function to get words + filter
+    //call the function to get words + filter
     handleSubmit = (e) => {
         e.preventDefault();
 
         this.setState({
-            line: `${this.state.line} ${this.state.userSelect}`,
+            lineInProgress: `${this.state.lineInProgress} ${this.state.userSelect.word}`,
             //not working yet, because we're not getting the value
-            totalSylls: this.state.totalSylls + this.state.userSelectSylls
+            // remainSylls: this.state.remainSylls + this.state.userSelectSylls
         })
 
-        this.getWords(this.state.userSelect);
+        this.getWords(this.state.userSelect.word);
         }
     
 
@@ -109,7 +111,8 @@ class Haiku extends Component {
 
             <h2>Haiku</h2>
                 <p>User word: {this.props.word}</p>
-                <p>Line 1: {this.state.line} Syllables: {this.state.totalSylls}</p>
+                <p>Line 1: {this.state.lineInProgress}</p>
+                <p>Syllables left: {this.state.remainSylls}</p>
 
                 <h3>Word options:</h3>
                 
@@ -126,16 +129,16 @@ class Haiku extends Component {
                             {   
                             this.state.results.map((word) => {
 
-                                //store word and syllable count in obkject so that we can pass it in as the value
-                                // const wordPlusSyll = {'word': `${word.word}`, 'syll':`${word.numSyllables}`}
+                                //store word and syllable count in object so that we can pass it in as the value
+                                // const wordPlusSyll = [word.word, word.numSyllables]
                                 
                                 return (
                                     word.word !== '.'
                                     ? <option 
                                         key={word.score} 
-                                        // value={wordPlusSyll}
                                         value={word.word}
-                                        >
+                                        // value={wordPlusSyll}
+                                    >
                                             Word:{word.word} (# of syllables: {word.numSyllables})
                                         </option>
                                     : null
