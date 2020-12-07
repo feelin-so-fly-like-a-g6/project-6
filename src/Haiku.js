@@ -1,9 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
 
-// LATEST UPDATE: 
-//Trying to figure out how to pass two values in the option value on line 136 (the word AND the numSyllables) so that we can retreive both. The word for the searc (and display of the line) and the numb of syllables so that we can keep count of how many syllable total we have, because we cannot exceed the 5 or 7, AND we must let the user knwo that they have reached the total number
-
 //Make a second API call within the component, passing the word as a parameter.
 //For the API call, we need: user word
 // This API call will return a list of words that usually follow that word in the English language
@@ -14,13 +11,11 @@ class Haiku extends Component {
     constructor(){
         super();
         this.state = {
-            remainSylls: 5, //Number of Syllables remianing for the line PASS AS PROPS
-
+            remainSylls: null, //remaining syllables for the line - passed as props
             userSelect: {
                 word: "", //the word the user selects
                 numSyllables: null, //num of syllables for the selected words
             },
-
             lineInProgress: '', //to display the full line (user word + selected words)
             results: [], //array of words returns from the API call
         }
@@ -34,7 +29,10 @@ class Haiku extends Component {
 
         this.setState({
             lineInProgress: this.props.word,
-            totalSylls: this.props.sylls
+            remainSylls: this.props.totalSylls - this.props.sylls,
+            userSelect: {
+                numSyllables: this.props.sylls
+            }
         })
     }
 
@@ -57,33 +55,50 @@ class Haiku extends Component {
     }
 
 
-    //function to filter the array of results to only get the matching number of syllables
+    //function to filter the array of results to only get the matching number of syllables 
     filterResults = (array) => {
-        //find the number of syllables needed
-        const syllsNeeded = this.state.remainSylls - this.props.sylls;
-        console.log(syllsNeeded);
-    
-        //filter the array to find the words that have a syllable count that is smaller or equal to syllsNeeded
+        //filter the array to find the words that have a syllable count that is smaller or equal to this.state.remainSylls
         const filteredArray = array.filter((word) => {
-            return word.numSyllables <= syllsNeeded
+            return word.numSyllables <= this.state.remainSylls
         })
+
+        //call the function to randomize the array - this will make sure that our user gets different words every time
+        this.randomize(filteredArray);
+
+        //Slice the array to get only 5 results
+        const slicedAndFiltered = filteredArray.slice(0,5);
+        console.log(slicedAndFiltered);
 
         //setState results with the filtered array
         this.setState({
-            results: filteredArray
+            results: slicedAndFiltered
         })
         console.log(this.state.results);
     }
 
 
+    //function to randomize the array and only get 5 results
+    randomize = (array) => {
+        let random = 0;
+        let temp = 0;
+        for (let i = 1; i < array.length; i++) {
+            random = Math.floor(Math.random() * i);
+            temp = array[i];
+            array[i] = array[random];
+            array[random] = temp;
+        }
+    }
+
+
     //handleselect to set that to the word and syllable count
     handleSelect = (input) => {
-
+        //store th number of syllables in a variable (because the path is long!)
+        const sylls = parseInt(input.target.options[input.target.selectedIndex].dataset.syll)
+        //set state
         this.setState({
             userSelect: {
-                word:input.target.value
-                //HOW???
-                // numSyllables: 
+                word:input.target.value,
+                numSyllables: sylls
             }
         })
     }
@@ -95,14 +110,14 @@ class Haiku extends Component {
         e.preventDefault();
 
         this.setState({
-            lineInProgress: `${this.state.lineInProgress} ${this.state.userSelect.word}`,
-            //not working yet, because we're not getting the value
-            // remainSylls: this.state.remainSylls + this.state.userSelectSylls
+            lineInProgress: 
+                `${this.state.lineInProgress} ${this.state.userSelect.word}`,
+            remainSylls: 
+                this.state.remainSylls - this.state.userSelect.numSyllables
         })
 
         this.getWords(this.state.userSelect.word);
         }
-    
 
 
     render() {
@@ -115,8 +130,10 @@ class Haiku extends Component {
                 <p>Syllables left: {this.state.remainSylls}</p>
 
                 <h3>Word options:</h3>
-                
-                    <form>
+
+                { this.state.remainSylls !== 0
+
+                ?   <form>
 
                         <label htmlFor="word">Choose a word:</label>
 
@@ -126,29 +143,34 @@ class Haiku extends Component {
                             onChange={this.handleSelect}
                         > 
 
-                            {   
+                        {   
                             this.state.results.map((word) => {
-
-                                //store word and syllable count in object so that we can pass it in as the value
-                                // const wordPlusSyll = [word.word, word.numSyllables]
-                                
+                            
                                 return (
                                     word.word !== '.'
-                                    ? <option 
+
+                                ?   <option 
                                         key={word.score} 
                                         value={word.word}
-                                        // value={wordPlusSyll}
+                                        data-syll={word.numSyllables}
                                     >
-                                            Word:{word.word} (# of syllables: {word.numSyllables})
-                                        </option>
-                                    : null
+                                        Word:{word.word} (# of syllables: {word.numSyllables})
+                                    </option>
+
+                                :   null
                                 )   
                             })
-                            }
+                        }
+
                         </select>
 
                         <button onClick={this.handleSubmit}>Pick Word</button>
+
                     </form>
+
+                : 'Line complete'
+
+                }
             
             </div>
         )
