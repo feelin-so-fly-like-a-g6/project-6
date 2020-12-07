@@ -111,13 +111,31 @@ class Haiku extends Component {
 
         this.setState({
             lineInProgress: 
-                `${this.state.lineInProgress} ${this.state.userSelect.word}`,
+                [this.state.lineInProgress, this.state.userSelect.word],
             remainSylls: 
                 this.state.remainSylls - this.state.userSelect.numSyllables
         })
 
         this.getWords(this.state.userSelect.word);
-        }
+    }
+    
+
+    //function to remove the last word
+    removeLastWord = () => {
+        const newLineInProgress = [...this.state.lineInProgress];
+            newLineInProgress.pop();
+            this.setState({
+                lineInProgress: newLineInProgress,
+            });
+    };
+
+
+    //function to clear the form
+    removeEverything = () => {
+        this.setState({
+            lineInProgress: "",
+        });
+    };
 
 
     render() {
@@ -134,6 +152,22 @@ class Haiku extends Component {
                 { this.state.remainSylls !== 0
 
                 ?   <form>
+
+                        <div className="controls">
+
+                            <button 
+                                className="removeLastWord" 
+                                onClick={this.removeLastWord}
+                            >
+                            Remove the last word
+                            </button>
+
+                            <button 
+                                className="removeEverything" onClick={this.removeEverything}
+                            >
+                            Remove everything
+                            </button>
+                        </div>
 
                         <label htmlFor="word">Choose a word:</label>
 
