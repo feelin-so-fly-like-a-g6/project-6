@@ -1,9 +1,9 @@
 import { Component } from "react";
 import "./App.css";
 import Header from "./Header";
-import Search from "./Search";
+import Verse from "./Verse";
 import Footer from "./Footer";
-import Haiku from "./Haiku";
+
 
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
@@ -27,47 +27,19 @@ import Haiku from "./Haiku";
 //md = s - this is from the API, it returns the number of syllables for each result
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      searchQuery: {
-        word: "",
-        numSyllables: "",
-      },
-    };
+constructor(){
+  super();
+  this.state = {
+    verseVisible: 1
   }
-
-  updateSearchQuery = ({ word, numSyllables }) => {
-    this.setState({
-      searchQuery: {
-        word: word,
-        numSyllables: numSyllables,
-      },
-    });
-  };
-
+}
   render() {
     return (
       <div className="App">
         <Header />
 
         <main>
-
-          {/* Repeat search + haiku 3x (once for each line) */}
-          <Search updateSearchQuery={this.updateSearchQuery} />
-
-          {
-            this.state.searchQuery.word
-            ? <Haiku 
-            word={this.state.searchQuery.word}
-            sylls={this.state.searchQuery.numSyllables}
-            totalSylls={5}
-            />
-            : '' //We can move search here so that when there is no word in state, the search bar shows, and when there is a word, the haiku shows
-          }
-          
-          {/* Strech goal: display haikus */}
-
+          <Verse />
         </main>
 
         <Footer />
