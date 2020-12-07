@@ -27,22 +27,15 @@ class Haiku extends Component {
     }
 
 
-    //function to filter the array of results to only get the matching number of syllables
-    filterResults = () => {
-        //find the number of syllables needed
-        const syllsNeeded = this.state.remainSylls - this.props.sylls;
-        console.log(syllsNeeded);
-    
-        //filter the array to find the words that have a syllable count that is smaller or equal to syllsNeeded
-        const filteredArray = this.state.results.filter((word) => {
-            return word.numSyllables <= syllsNeeded
-        })
+    //on mount - get words and set state
+    componentDidMount(){
+        //API call to get the words that normally follow the word in the user input
+        this.getWords(this.props.word);
 
-        //setState results with the filtered array
         this.setState({
-            results: filteredArray
+            lineInProgress: this.props.word,
+            totalSylls: this.props.sylls
         })
-        console.log(this.state.results);
     }
 
 
@@ -58,23 +51,28 @@ class Haiku extends Component {
                 md: 's',
             },
         }).then((response)=> {
-            this.setState({
-                results: response.data
-            })
             //call the function to filter the results
-            this.filterResults();
+            this.filterResults(response.data);
         })
     }
 
-    //on mount - get words and set state
-    componentDidMount(){
-        //API call to get the words that normally follow the word in the user input
-        this.getWords(this.props.word);
 
-        this.setState({
-            lineInProgress: this.props.word,
-            totalSylls: this.props.sylls
+    //function to filter the array of results to only get the matching number of syllables
+    filterResults = (array) => {
+        //find the number of syllables needed
+        const syllsNeeded = this.state.remainSylls - this.props.sylls;
+        console.log(syllsNeeded);
+    
+        //filter the array to find the words that have a syllable count that is smaller or equal to syllsNeeded
+        const filteredArray = array.filter((word) => {
+            return word.numSyllables <= syllsNeeded
         })
+
+        //setState results with the filtered array
+        this.setState({
+            results: filteredArray
+        })
+        console.log(this.state.results);
     }
 
 
