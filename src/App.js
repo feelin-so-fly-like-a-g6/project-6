@@ -32,9 +32,7 @@ class App extends Component {
     this.state = {
       searchQuery: {
         word: "",
-
         numSyllables: "",
-
       },
     };
   }
@@ -47,6 +45,7 @@ class App extends Component {
       },
     });
   };
+
   render() {
     return (
       <div className="App">
@@ -54,14 +53,18 @@ class App extends Component {
 
         <main>
 
+          {/* Repeat search + haiku 3x (once for each line) */}
           <Search updateSearchQuery={this.updateSearchQuery} />
-          <Haiku />
 
-
-          <Haiku 
-            word={this.state.word}
-            sylls={this.state.numberOfSylls}
-          />
+          {
+            this.state.searchQuery.word
+            ? <Haiku 
+            word={this.state.searchQuery.word}
+            sylls={this.state.searchQuery.numSyllables}
+            />
+            : '' //We can move search here so that when there is no word in state, the search bar shows, and when there is a word, the haiku shows
+          }
+          
           {/* Strech goal: display haikus */}
 
         </main>
