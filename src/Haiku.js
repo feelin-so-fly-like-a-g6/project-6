@@ -28,7 +28,7 @@ class Haiku extends Component {
         this.getWords(this.props.word);
 
         this.setState({
-            lineInProgress: this.props.word,
+            lineInProgress: [this.props.word],
             remainSylls: this.props.totalSylls - this.props.sylls,
             userSelect: {
                 numSyllables: this.props.sylls
@@ -111,7 +111,7 @@ class Haiku extends Component {
 
         this.setState({
             lineInProgress: 
-                [this.state.lineInProgress, this.state.userSelect.word],
+                [...this.state.lineInProgress, this.state.userSelect.word],
             remainSylls: 
                 this.state.remainSylls - this.state.userSelect.numSyllables
         })
@@ -138,13 +138,16 @@ class Haiku extends Component {
     };
 
 
+
     render() {
+        console.log(typeof this.state.lineInProgress)
+
         return(
         <div className="Haiku">
 
             <h2>Haiku</h2>
                 <p>User word: {this.props.word}</p>
-                <p>Line 1: {this.state.lineInProgress}</p>
+                <p>Line 1: {this.state.lineInProgress && this.state.lineInProgress.join(' ')}</p>
                 <p>Syllables left: {this.state.remainSylls}</p>
 
                 <h3>Word options:</h3>
