@@ -33,13 +33,40 @@ constructor(){
     verseVisible: 1
   }
 }
+
+changeVerseVisible = () => {
+  this.state.verseVisible >= 3
+    ? this.setState({
+        verseVisible: 1,
+      })
+    : this.setState({
+        verseVisible: ++this.state.verseVisible,
+      })
+  
+}
+
+
   render() {
     return (
       <div className="App">
         <Header />
 
         <main>
-          <Verse />
+          {
+            this.state.verseVisible === 1 &&
+              <Verse lineNumber={1} totalNumSyllables={5} changeVerseVisible={this.changeVerseVisible} />
+          }
+
+          {
+            this.state.verseVisible === 2 &&
+              <Verse lineNumber={2} totalNumSyllables={7} changeVerseVisible={this.changeVerseVisible} />
+          }
+
+          {
+            this.state.verseVisible === 3 &&
+              <Verse lineNumber={3} totalNumSyllables={5} startAgain = {this.startAgain} />
+          }
+          <button onClick={this.changeVerseVisible}>verse</button>
         </main>
 
         <Footer />
