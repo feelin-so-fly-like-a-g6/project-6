@@ -33,6 +33,7 @@ class Verse extends Component {
             ? <Haiku 
             word={this.state.searchQuery.word}
             sylls={this.state.searchQuery.numSyllables}
+            totalSylls={5}
             />
             : '' //We can move search here so that when there is no word in state, the search bar shows, and when there is a word, the haiku shows
           }
