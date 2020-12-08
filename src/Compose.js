@@ -6,7 +6,7 @@ import axios from "axios";
 // This API call will return a list of words that usually follow that word in the English language
 // Filter/other method that array of results to get the words with the correct number of syllables (ie if the user inputs a 2 syllable word, we will give them results with <= 3 syllables)
 
-class Haiku extends Component {
+class Compose extends Component {
 
     constructor(){
         super();
@@ -143,7 +143,7 @@ class Haiku extends Component {
         console.log(typeof this.state.lineInProgress)
 
         return(
-        <div className="Haiku">
+        <div className="Compose">
 
             <h2>Haiku</h2>
                 <p>User word: {this.props.word}</p>
@@ -215,4 +215,4 @@ class Haiku extends Component {
 
 }
 
-export default Haiku;
+export default Compose;

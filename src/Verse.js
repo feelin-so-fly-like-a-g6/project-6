@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Haiku from './Haiku';
+import Compose from './Compose';
 import Search from './Search';
 
 class Verse extends Component {
@@ -30,7 +30,7 @@ class Verse extends Component {
 
           {
             this.state.searchQuery.word
-            ? <Haiku 
+            ? <Compose 
             word={this.state.searchQuery.word}
             sylls={this.state.searchQuery.numSyllables}
             totalSylls={5}
