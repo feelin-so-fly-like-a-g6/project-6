@@ -2,6 +2,7 @@ import { Component } from "react";
 import "./App.css";
 import Header from "./Header";
 import Verse from "./Verse";
+import Haiku from './Haiku'
 import Footer from "./Footer";
 
 
@@ -39,6 +40,7 @@ constructor(){
         <Header />
 
         <main>
+          <Haiku />
           <Verse />
         </main>
 

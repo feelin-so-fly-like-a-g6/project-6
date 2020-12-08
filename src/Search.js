@@ -19,7 +19,7 @@ class Search extends Component {
     }).then(({ data }) => {
       //get only first three suggestions
       const suggestions = data.filter((item, index) => {
-        if (index < 3) {
+        if (index < 5) {
           return item;
         }
       });
