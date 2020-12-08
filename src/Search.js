@@ -44,6 +44,7 @@ class Search extends Component {
       .then(({ data }) => {
         console.log(data[0]);
         this.props.updateSearchQuery(data[0]);
+        
       })
       .catch(() => {
         console.log("no such word");

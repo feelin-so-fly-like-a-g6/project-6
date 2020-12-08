@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Header";
 import Search from "./Search";
 import Footer from "./Footer";
-import Haiku from "./Haiku";
+import Compose from "./Compose";
 
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
@@ -55,10 +55,8 @@ class App extends Component {
         <main>
 
           <Search updateSearchQuery={this.updateSearchQuery} />
-          <Haiku />
 
-
-          <Haiku 
+          <Compose 
             word={this.state.word}
             sylls={this.state.numberOfSylls}
           />
