@@ -33,3 +33,20 @@ label,
 p {
   color: #ffffb0;
 }
+
+.suggestedWords{
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+.suggestedWords li {
+  width: 100px;
+  transition: all 0.4s ease-in-out;
+  padding: 15px;
+  background-color:#4bff72;
+  text-align: center;
+  margin: 5px;
+}
+.suggestedWords li:hover {
+  transform: translateY(10px);
+}
