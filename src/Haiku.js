@@ -24,4 +24,3 @@ class Haiku extends Component {
 }
 
 export default Haiku;
-
