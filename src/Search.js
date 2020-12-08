@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./App.css";
 import axios from "axios";
 class Search extends Component {
   constructor() {
@@ -19,7 +20,7 @@ class Search extends Component {
     }).then(({ data }) => {
       //get only first three suggestions
       const suggestions = data.filter((item, index) => {
-        if (index < 3) {
+        if (index < 5) {
           return item;
         }
       });
@@ -63,7 +64,7 @@ class Search extends Component {
             }}
           />
         </form>
-        <ul>
+        <ul className="suggestedWords">
           {/* displays suggested words (if there are any) as lis */}
           {this.state.suggestions &&
             this.state.suggestions.map((word) => {
