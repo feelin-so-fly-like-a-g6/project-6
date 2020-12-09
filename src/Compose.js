@@ -103,6 +103,18 @@ class Compose extends Component {
         })
     }
 
+    handleSelect = (input) => {
+        //store th number of syllables in a variable (because the path is long!)
+        const sylls = parseInt(input.target.ul[input.target.li].dataset.syll)
+        //set state
+        this.setState({
+            userSelect: {
+                word: input.target.value,
+                numSyllables: sylls
+            }
+        })
+    }
+
 
     //When user selects a word
     //call the function to get words + filter
