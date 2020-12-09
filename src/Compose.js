@@ -27,7 +27,8 @@ class Compose extends Component {
 
     this.setState(
       {
-        lineInProgress: this.props.line.length > 1 ? this.props.line : [this.props.word],        
+        lineInProgress:
+          this.props.line.length > 1 ? this.props.line : [this.props.word],
         remainSylls: this.props.totalSylls - this.props.sylls,
         userSelect: {
           numSyllables: this.props.sylls,
@@ -136,20 +137,37 @@ class Compose extends Component {
   };
 
   //function to remove the last word
-  removeLastWord = () => {
+  removeLastWord = (e) => {
+    e.preventDefault();
     const newLineInProgress = [...this.state.lineInProgress];
     newLineInProgress.pop();
     //Set line without last word in the state
-    this.setState({
-      lineInProgress: newLineInProgress,
-    });
+    this.setState(
+      {
+        lineInProgress: newLineInProgress,
+      },
+      () => {
+        this.props.updateHaiku(
+          this.props.lineNumber,
+          this.state.lineInProgress
+        );
+      }
+    );
   };
 
   //function to remove all the words from the line
   removeEverything = () => {
-    this.setState({
-      lineInProgress: "",
-    });
+    this.setState(
+      {
+        lineInProgress: "",
+      },
+      () => {
+        this.props.updateHaiku(
+          this.props.lineNumber,
+          this.state.lineInProgress
+        );
+      }
+    );
   };
 
   render() {

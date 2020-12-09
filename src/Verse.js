@@ -27,7 +27,7 @@ class Verse extends Component {
       <div className="verse">
         {/* Repeat search + haiku 3x (once for each line) */}
 
-        {this.state.searchQuery.word ? (
+        {this.props.line.length > 1 || this.state.searchQuery.word ? (
           <Compose
             updateHaiku={this.props.updateHaiku}
             word={this.state.searchQuery.word}
