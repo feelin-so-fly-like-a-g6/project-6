@@ -31,7 +31,7 @@ class App extends Component {
 constructor(){
   super();
   this.state = {
-    verseVisible: 1,
+    verseVisible: 0,
     line1: '',
     line2: '',
     line3: ''
@@ -62,17 +62,27 @@ constructor(){
   render() {
     return (
       <div className="App">
-        <Intro />
-        <Header />
+        
 
         <main>
 
-          < Haiku 
-              line1={this.state.line1} 
-              line2={this.state.line2}
-              line3={this.state.line3}
-          />
+          {
+            this.state.verseVisible === 0 &&
+            <>
+              <Intro changeVerseVisible={this.changeVerseVisible} />
+              <Header />
+            </>
+          }
 
+          { 
+            this.state.verseVisible > 0 &&
+              < Haiku 
+                line1={this.state.line1} 
+                line2={this.state.line2}
+                line3={this.state.line3}
+              />
+          }
+          
           {
             this.state.verseVisible === 1 &&
               <Verse updateHaiku={this.updateHaiku} lineNumber={1} totalNumSyllables={5} changeVerseVisible={this.changeVerseVisible} />
