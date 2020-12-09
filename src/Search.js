@@ -1,35 +1,59 @@
 import { Component } from "react";
 import "./App.css";
 import axios from "axios";
+import Error from "./Error";
 class Search extends Component {
   constructor() {
     super();
     this.state = {
       suggestions: "",
+      showError: false
     };
   }
+
   //this function gets suggested words for autocomplete from api
   getSuggestions = (word) => {
-    axios({
-      url: "https://api.datamuse.com/sug",
-      responseType: "json",
-      method: "GET",
-      params: {
-        s: word,
-      },
-    }).then(({ data }) => {
-      //get only first three suggestions
-      const suggestions = data.filter((item, index) => {
-        if (index < 5) {
-          return item;
-        }
-      });
-      //set the suggestions into state
-      this.setState({
-        suggestions: suggestions,
-      });
-    });
-  };
+    //check if the word is a valid word/letter character
+    let wordParams = /^([a-z\w])+$/;
+    //if so, lets get some words from our API!
+    if (wordParams.test(word) && word !== ''){
+      axios({
+        url: "https://api.datamuse.com/sug",
+        responseType: "json",
+        method: "GET",
+        params: {
+          s: word,
+        },
+      })
+      .then(({ data }) => {
+      //store the suggestions in an array, and filter that array to only get words (as per our regex)
+        const suggestions = data.filter((item) => {
+        const singleWord = /^([a-z])+$/;
+        //if the words correspond to our cirterias, lets return them and setState for our error message to no longer display
+            if (singleWord.test(item.word)) {
+            this.setState({
+              showError: false
+            })
+            return item;
+            }
+            //splice to only get 5 word autocompletions
+        }).splice(0,5);
+        //setState for the suggestions, they will then display on the page
+        this.setState({
+          suggestions: suggestions,
+        });
+      })
+      } else {
+        //if the user query is not a word or letter
+        //clear the array and set the errorMsg state to true - to show the error
+        this.setState({
+          suggestions: [],
+          showError: true
+        })
+      }
+    }
+
+
   //when suggested word is clicked, this function is called. It gets the syllables number of the clicked word
   getWordInfo = (e) => {
     const word = e.target.dataset.name;
@@ -64,6 +88,11 @@ class Search extends Component {
             }}
           />
         </form>
+        {
+          this.state.showError
+          ? < Error />
+          : ''
+        }
         <ul className="suggestedWords">
           {/* displays suggested words (if there are any) as lis */}
           {this.state.suggestions &&
