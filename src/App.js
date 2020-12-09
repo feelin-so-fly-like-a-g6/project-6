@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Header";
 import Intro from "./Intro";
 import Verse from "./Verse";
-import Haiku from './Haiku';
+import Haiku from "./Haiku";
 import Footer from "./Footer";
 
 // PSEUDO CODE
@@ -28,75 +28,93 @@ import Footer from "./Footer";
 //md = s - this is from the API, it returns the number of syllables for each result
 
 class App extends Component {
-constructor(){
-  super();
-  this.state = {
-    verseVisible: 0,
-    line1: '',
-    line2: '',
-    line3: ''
-    
+  constructor() {
+    super();
+    this.state = {
+      verseVisible: 0,
+      line1: "",
+      line2: "",
+      line3: "",
+    };
   }
-}
 
-//Function to set the state of the line - will be passed as props to the verse
+  //Function to set the state of the line - will be passed as props to the verse
   updateHaiku = (numberOfLine, lineText) => {
     //storing the line number in a variable
     const line = `line${numberOfLine}`;
     console.log(typeof line);
     this.setState({
-        [line]: lineText,
-    })
-  }
+      [line]: lineText,
+    });
+  };
 
   changeVerseVisible = () => {
     this.state.verseVisible >= 3
       ? this.setState({
-        verseVisible: 1,
+          verseVisible: 1,
         })
       : this.setState({
-        verseVisible: ++this.state.verseVisible,
-      })
-  }
+          verseVisible: ++this.state.verseVisible,
+        });
+  };
+
+  goToPreviousLine = () => {
+    const prevVerseVisible = this.state.verseVisible - 1;
+    this.setState({
+      verseVisible: prevVerseVisible,
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        
-
         <main>
-
-          {
-            this.state.verseVisible === 0 &&
+          {this.state.verseVisible === 0 && (
             <>
               <Intro changeVerseVisible={this.changeVerseVisible} />
               <Header />
             </>
-          }
+          )}
 
-          { 
-            this.state.verseVisible > 0 &&
-              < Haiku 
-                line1={this.state.line1} 
-                line2={this.state.line2}
-                line3={this.state.line3}
-              />
-          }
-          
-          {
-            this.state.verseVisible === 1 &&
-              <Verse updateHaiku={this.updateHaiku} lineNumber={1} totalNumSyllables={5} changeVerseVisible={this.changeVerseVisible} />
-          }
+          {this.state.verseVisible > 0 && (
+            <Haiku
+              line1={this.state.line1}
+              line2={this.state.line2}
+              line3={this.state.line3}
+            />
+          )}
 
-          {
-            this.state.verseVisible === 2 &&
-              <Verse updateHaiku={this.updateHaiku} lineNumber={2} totalNumSyllables={7} changeVerseVisible={this.changeVerseVisible} />
-          }
+          {this.state.verseVisible === 1 && (
+            <Verse
+              updateHaiku={this.updateHaiku}
+              lineNumber={1}
+              line={this.state.line1}
+              totalNumSyllables={5}
+              changeVerseVisible={this.changeVerseVisible}
+            />
+          )}
 
-          {
-            this.state.verseVisible === 3 &&
-              <Verse updateHaiku={this.updateHaiku} lineNumber={3} totalNumSyllables={5} startAgain = {this.startAgain} />
-          }
+          {this.state.verseVisible === 2 && (
+            <Verse
+              updateHaiku={this.updateHaiku}
+              lineNumber={2}
+              line={this.state.line2}
+              totalNumSyllables={7}
+              changeVerseVisible={this.changeVerseVisible}
+              goToPreviousLine={this.goToPreviousLine}
+            />
+          )}
+
+          {this.state.verseVisible === 3 && (
+            <Verse
+              updateHaiku={this.updateHaiku}
+              lineNumber={3}
+              line={this.state.line1}
+              totalNumSyllables={5}
+              startAgain={this.startAgain}
+              goToPreviousLine={this.goToPreviousLine}
+            />
+          )}
         </main>
 
         <Footer />
