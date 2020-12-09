@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import Header from "./Header";
+import Intro from "./Intro";
 import Verse from "./Verse";
 import Haiku from './Haiku';
 import Footer from "./Footer";
@@ -61,6 +62,7 @@ constructor(){
   render() {
     return (
       <div className="App">
+        <Intro />
         <Header />
 
         <main>

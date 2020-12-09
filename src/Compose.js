@@ -97,7 +97,7 @@ class Compose extends Component {
             }
         )
     }
-
+    
     //When user selects a word
     //call the function to get words + filter
     handleSubmit = (e) => {
