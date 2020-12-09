@@ -181,13 +181,8 @@ class Compose extends Component {
                         </div>
 
                         <label htmlFor="word">Choose a word:</label>
-<<<<<<< Updated upstream
                         <ul 
                             className="wordPicker"
-=======
-
-                        <ul 
->>>>>>> Stashed changes
                             name="wordSelect" 
                             id="word"   
                         > 
@@ -196,35 +191,21 @@ class Compose extends Component {
                                 return (
                                     word.word !== '.'
                                 ?   <li 
-<<<<<<< Updated upstream
                                         className="wordOption"
-=======
->>>>>>> Stashed changes
                                         key={word.score} 
                                         // value={word.word}
                                         data-syll={word.numSyllables}
                                         data-word={word.word}
                                         onClick={this.handleSelect}
                                     >
-<<<<<<< Updated upstream
-                                        {word.word}
-=======
                                         Word:{word.word} (# of syllables: {word.numSyllables})
->>>>>>> Stashed changes
                                     </li>
                                 :   null
                                 )   
                             })
                         }
-<<<<<<< Updated upstream
                         </ul>
                         
-=======
-
-                        </ul>
-
-
->>>>>>> Stashed changes
                     </form>
 
                 : 'Line complete'
