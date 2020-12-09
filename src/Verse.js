@@ -26,7 +26,6 @@ class Verse extends Component {
     return(
       <div className="verse">
         {/* Repeat search + haiku 3x (once for each line) */}
-          <Search updateSearchQuery={this.updateSearchQuery} />
 
           {
             this.state.searchQuery.word
@@ -38,7 +37,7 @@ class Verse extends Component {
             lineNumber={this.props.lineNumber}
             changeVerseVisible={this.props.changeVerseVisible}
             />
-            : '' //We can move search here so that when there is no word in state, the search bar shows, and when there is a word, the haiku shows
+            : <Search updateSearchQuery={this.updateSearchQuery} />
           }
           {/* Strech goal: display haikus */}
       </div>
