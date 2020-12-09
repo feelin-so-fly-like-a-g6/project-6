@@ -27,7 +27,7 @@ class Compose extends Component {
 
     this.setState(
       {
-        lineInProgress: [this.props.word],
+        lineInProgress: this.props.line.length > 1 ? this.props.line : [this.props.word],        
         remainSylls: this.props.totalSylls - this.props.sylls,
         userSelect: {
           numSyllables: this.props.sylls,
@@ -37,7 +37,7 @@ class Compose extends Component {
       () => {
         this.props.updateHaiku(
           this.props.lineNumber,
-          this.state.lineInProgress.join(" ")
+          this.state.lineInProgress
         );
       }
     );
@@ -127,7 +127,7 @@ class Compose extends Component {
       () => {
         this.props.updateHaiku(
           this.props.lineNumber,
-          this.state.lineInProgress.join(" ")
+          this.state.lineInProgress
         );
       }
     );
@@ -181,7 +181,6 @@ class Compose extends Component {
                   <li
                     className="wordOption"
                     key={word.score}
-                    // value={word.word}
                     data-syll={word.numSyllables}
                     data-word={word.word}
                     onClick={this.handleSelect}
