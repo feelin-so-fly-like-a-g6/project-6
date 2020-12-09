@@ -24,7 +24,6 @@ red: #db3a3a */
 .App {
   background-image: url(./assets/haikuBackground.jpg);
   background-size: cover;
-  /* background-position: bottom; */
   text-align: center;
 }
 
@@ -104,6 +103,7 @@ p {
   justify-content: center;
   align-items: center;
 }
+
 .wordOption {
   padding: 15px;
   width: 200px;
