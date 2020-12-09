@@ -33,7 +33,9 @@ class Compose extends Component {
             userSelect: {
                 numSyllables: this.props.sylls
             }
-        })
+        },
+
+        )
     }
 
 
@@ -91,20 +93,23 @@ class Compose extends Component {
 
 
     //handleselect to set that to the word and syllable count
-    handleSelect = (input) => {
+    handleSelect = (e) => {
         //store th number of syllables in a variable (because the path is long!)
-        console.log(input.target.dataset.word);
-        const sylls = parseInt(input.target.dataset.syll);
-        console.log(sylls);
+        // console.log(input.target.dataset.word);
+        // const sylls = parseInt(input.target.dataset.syll);
+        // console.log(sylls);
+        const word = e.target.dataset.word;
+        const sylls = e.target.dataset.syll;
+
         //set state
         this.setState({
             userSelect: {
-                word:input.target.value,
+                word:word,
                 numSyllables: sylls
             }
         },
         () => {
-            this.handleSubmit(input);
+            this.handleSubmit(e);
         }
         )
     }
@@ -123,7 +128,7 @@ class Compose extends Component {
                 this.state.remainSylls - this.state.userSelect.numSyllables
         },
             () => { this.props.updateHaiku(this.props.lineNumber, this.state.lineInProgress.join(" ")) });
-         
+        
         this.getWords(this.state.userSelect.word);
     }
     
