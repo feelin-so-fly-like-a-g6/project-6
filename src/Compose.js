@@ -162,7 +162,8 @@ class Compose extends Component {
                         </div>
                         
                         <label htmlFor="word">Choose a word:</label>
-                        <select 
+                        <ul 
+                            className="wordPicker"
                             name="wordSelect" 
                             id="word"   
                             onChange={(e)=>{
@@ -173,18 +174,19 @@ class Compose extends Component {
                             this.state.results.map((word) => {                            
                                 return (
                                     word.word !== '.'
-                                ?   <option 
+                                ?   <li 
+                                        className="wordOption"
                                         key={word.score} 
                                         value={word.word}
                                         data-syll={word.numSyllables}
                                     >
-                                        Word:{word.word} (# of syllables: {word.numSyllables})
-                                    </option>
+                                        {word.word}
+                                    </li>
                                 :   null
                                 )   
                             })
                         }
-                        </select>
+                        </ul>
                         
                     </form>
                 : 'Line complete'
