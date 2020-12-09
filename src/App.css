@@ -21,10 +21,12 @@ red: #db3a3a */
   font-family: 'Kanit', sans-serif;
 }
 
+
 .App {
-  background-image: url(./assets/haikuBackground.jpg);
+  background-image: linear-gradient(rgba(0, 70, 67, 0.7), rgba(0, 70, 67, 0.7)), url(./assets/boatsAndWaves.jpg) ;
   background-size: cover;
   text-align: center;
+  border: 2px blue solid;
 }
 
 h1,
