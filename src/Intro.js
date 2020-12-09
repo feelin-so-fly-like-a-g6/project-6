@@ -12,11 +12,11 @@ class Intro extends Component {
         return (
             <div className="Wrapper">
                 <div className="Intro">
-                    <button className="button title" onClick={this.switch}>Haiku Ahoy!</button>
+                    <button className="button title" >Haiku Ahoy!</button>
                 
                     <div className="Introduction">
                         <p>A haiku (俳句 high-koo) is a short three-line poem that usually follows a 5-7-5 syllable structure. Haiku poetry was originally developed by Japanese poets, and is often inspired by nature, a moment of beauty, or a poignant experience.</p>
-                        <button className="button CreateOwn">Create your own</button>
+                        <button className="button CreateOwn" onClick={this.props.changeVerseVisible}>Create your own</button>
                         {/* Make an arrow here */}
                     </div>
                 </div>
