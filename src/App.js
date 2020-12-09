@@ -3,8 +3,8 @@ import "./App.css";
 import Header from "./Header";
 import Intro from "./Intro";
 import Verse from "./Verse";
+import Haiku from './Haiku';
 import Footer from "./Footer";
-
 
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
@@ -31,21 +31,33 @@ class App extends Component {
 constructor(){
   super();
   this.state = {
-    verseVisible: 1
+    verseVisible: 1,
+    line1: '',
+    line2: '',
+    line3: ''
+    
   }
 }
 
-changeVerseVisible = () => {
-  this.state.verseVisible >= 3
-    ? this.setState({
+//Function to set the state of the line - will be passed as props to the verse
+  updateHaiku = (numberOfLine, lineText) => {
+    //storing the line number in a variable
+    const line = `line${numberOfLine}`;
+    console.log(typeof line);
+    this.setState({
+        [line]: lineText,
+    })
+  }
+
+  changeVerseVisible = () => {
+    this.state.verseVisible >= 3
+      ? this.setState({
         verseVisible: 1,
-      })
-    : this.setState({
+        })
+      : this.setState({
         verseVisible: ++this.state.verseVisible,
       })
-  
-}
-
+  }
 
   render() {
     return (
@@ -54,21 +66,27 @@ changeVerseVisible = () => {
         <Header />
 
         <main>
+
+          < Haiku 
+              line1={this.state.line1} 
+              line2={this.state.line2}
+              line3={this.state.line3}
+          />
+
           {
             this.state.verseVisible === 1 &&
-              <Verse lineNumber={1} totalNumSyllables={5} changeVerseVisible={this.changeVerseVisible} />
+              <Verse updateHaiku={this.updateHaiku} lineNumber={1} totalNumSyllables={5} changeVerseVisible={this.changeVerseVisible} />
           }
 
           {
             this.state.verseVisible === 2 &&
-              <Verse lineNumber={2} totalNumSyllables={7} changeVerseVisible={this.changeVerseVisible} />
+              <Verse updateHaiku={this.updateHaiku} lineNumber={2} totalNumSyllables={7} changeVerseVisible={this.changeVerseVisible} />
           }
 
           {
             this.state.verseVisible === 3 &&
-              <Verse lineNumber={3} totalNumSyllables={5} startAgain = {this.startAgain} />
+              <Verse updateHaiku={this.updateHaiku} lineNumber={3} totalNumSyllables={5} startAgain = {this.startAgain} />
           }
-          <button onClick={this.changeVerseVisible}>verse</button>
         </main>
 
         <Footer />

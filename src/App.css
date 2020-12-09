@@ -79,11 +79,6 @@ p {
 .Introduction p {
   color: #004643;
 }
-
-
-
-
-
 .suggestedWords{
   list-style-type: none;
   display: flex;
@@ -99,7 +94,4 @@ p {
 }
 .suggestedWords li:hover {
   transform: translateY(10px);
-}
-input[type="text"]:focus + .suggestedWords li {
-  height: 63px;
 }
