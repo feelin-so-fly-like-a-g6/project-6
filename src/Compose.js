@@ -23,7 +23,6 @@ class Compose extends Component {
   //on mount - get words and set state
   componentDidMount() {
     //API call to get the words that normally follow the word in the user input
-    this.getWords(this.props.word);
 
     this.setState(
       {
@@ -36,6 +35,7 @@ class Compose extends Component {
         remainSylls: this.props.totalSylls - this.props.sylls,
         userSelect: {
           numSyllables: this.props.sylls,
+          word: this.props.word,
         },
         //Puts the user word in Haiku component
       },
@@ -44,6 +44,7 @@ class Compose extends Component {
           this.props.lineNumber,
           this.state.lineInProgress
         );
+        this.getWords(this.state.userSelect.word);
       }
     );
   }
@@ -160,6 +161,16 @@ class Compose extends Component {
         this.props.updateHaiku(
           this.props.lineNumber,
           this.state.lineInProgress
+        );
+        this.setState(
+          {
+            userSelect: this.state.lineInProgress[
+              this.state.lineInProgress.length - 1
+            ],
+          },
+          () => {
+            this.getWords(this.state.userSelect.word);
+          }
         );
       }
     );
