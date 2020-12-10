@@ -4,8 +4,9 @@ import Header from "./Header";
 import Intro from "./Intro";
 import Verse from "./Verse";
 import Haiku from "./Haiku";
-import Logbook from './Logbook';
+import Logbook from "./Logbook";
 import Footer from "./Footer";
+import Finish from "./Finish";
 
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
@@ -37,10 +38,9 @@ class App extends Component {
       line2: "",
       line3: "",
       headerVisible: false,
-      allHaikus: []
+      allHaikus: [],
     };
   }
-
 
   //Function to set the state of the line - will be passed as props to the verse
   updateHaiku = (numberOfLine, lineText) => {
@@ -54,17 +54,13 @@ class App extends Component {
 
   //function to change which verse is being/displayed composed on the page
   changeVerseVisible = () => {
-    this.state.verseVisible >= 3
-      ? this.setState({
-          verseVisible: 1,
-        })
-      : this.setState({
-          verseVisible: ++this.state.verseVisible,
-        });
+    this.setState({
+      verseVisible: ++this.state.verseVisible,
+    });
     //also show the header, when the verse is visible
     this.setState({
-      headerVisible: true
-    })
+      headerVisible: true,
+    });
   };
 
   //function to allow the user to move to a previous line, mid composition
@@ -78,28 +74,24 @@ class App extends Component {
   //function to set the sate of allHaikus - aka populate the array from Firebase
   getHaikus = (array) => {
     this.setState({
-      allHaikus: array
-    })
-  }
+      allHaikus: array,
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        
-        
-          {this.state.verseVisible === 0 && (
-            <>
-              <Intro changeVerseVisible={this.changeVerseVisible} />
-            </>
-          )}
+        {this.state.verseVisible === 0 && (
+          <>
+            <Intro changeVerseVisible={this.changeVerseVisible} />
+          </>
+        )}
 
-          {/* Display only once the user clicks on 'create your own' - which sets the state to true */}
-          {this.state.headerVisible
-          ? <Header />
-          : null}
+        {/* Display only once the user clicks on 'create your own' - which sets the state to true */}
+        {this.state.headerVisible ? <Header /> : null}
 
-          <main>
-          {this.state.verseVisible > 0 && (
+        <main>
+          {this.state.verseVisible < 4 && this.state.verseVisible > 0 && (
             <Haiku
               line1={this.state.line1}
               line2={this.state.line2}
@@ -135,15 +127,25 @@ class App extends Component {
               line={this.state.line3}
               totalNumSyllables={5}
               startAgain={this.startAgain}
+              changeVerseVisible={this.changeVerseVisible}
               goToPreviousLine={this.goToPreviousLine}
             />
           )}
 
-        < Logbook 
-            allHaikus={this.state.allHaikus}
-            getHaikus={this.getHaikus}
-        />
+          {this.state.verseVisible === 4 && (
+            <Finish
+              line1={this.state.line1}
+              line2={this.state.line2}
+              line3={this.state.line3}
+            />
+          )}
 
+          {this.state.verseVisible <= 4 && this.state.verseVisible > 0 && (
+            <Logbook
+              allHaikus={this.state.allHaikus}
+              getHaikus={this.getHaikus}
+            />
+          )}
         </main>
 
         <Footer />
