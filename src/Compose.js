@@ -28,7 +28,7 @@ class Compose extends Component {
       {
         lineInProgress:
           // this.props.line.length > 1 ? this.props.line : [this.props.word],
-          this.props.line.length > 1
+          this.props.line.length > 0
             ? this.props.line
             : [{ word: this.props.word, numSyllables: this.props.sylls }],
 
@@ -52,7 +52,7 @@ class Compose extends Component {
   }
 
   calculateFilledSylls = () => {
-    if (this.props.line) {
+    if (this.props.line.length > 0) {
       const numOfFilledSylls = this.props.line
         .map((wordObj) => {
           return wordObj.numSyllables;
@@ -62,6 +62,8 @@ class Compose extends Component {
         });
       console.log(numOfFilledSylls);
       return numOfFilledSylls;
+    } else {
+      return 0;
     }
   };
 
@@ -166,9 +168,9 @@ class Compose extends Component {
   //function to remove the last word
   removeLastWord = (e) => {
     e.preventDefault();
+    
     const newLineInProgress = [...this.state.lineInProgress];
     const deletedWord = newLineInProgress.pop();
-    console.log(deletedWord);
     //Set line without last word in the state
     this.setState(
       {
@@ -177,6 +179,11 @@ class Compose extends Component {
         remainSylls: this.state.remainSylls + deletedWord.numSyllables,
       },
       () => {
+        //if line in prgress empty make verse update -> search appears
+        if(!this.state.lineInProgress===[]){
+          console.log('line empty')
+          this.props.reRenderVerse();
+        }
         //update haiku with new line in progress
         this.props.updateHaiku(
           this.props.lineNumber,
