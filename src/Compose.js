@@ -36,8 +36,8 @@ class Compose extends Component {
           this.props.totalSylls -
           (this.props.sylls ? this.props.sylls : this.calculateFilledSylls()),
         userSelect: {
-          numSyllables: this.props.sylls,
-          word: this.props.word,
+          numSyllables: this.props.sylls ? this.props.sylls : this.props.line[this.props.line.length - 1].numSyllables,
+          word: this.props.word ? this.props.word : this.props.line[this.props.line.length - 1].word,
         },
         //Puts the user word in Haiku component
       },
