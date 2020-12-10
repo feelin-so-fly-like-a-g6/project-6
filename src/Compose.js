@@ -28,7 +28,11 @@ class Compose extends Component {
     this.setState(
       {
         lineInProgress:
-          this.props.line.length > 1 ? this.props.line : [this.props.word],
+          // this.props.line.length > 1 ? this.props.line : [this.props.word],
+          this.props.line.length > 1
+            ? this.props.line
+            : [{ word: this.props.word, numSyllables: this.props.sylls }],
+
         remainSylls: this.props.totalSylls - this.props.sylls,
         userSelect: {
           numSyllables: this.props.sylls,
@@ -119,7 +123,10 @@ class Compose extends Component {
       {
         lineInProgress: [
           ...this.state.lineInProgress,
-          this.state.userSelect.word,
+          {
+            word: this.state.userSelect.word,
+            numSyllables: parseInt(this.state.userSelect.numSyllables),
+          },
         ],
         remainSylls:
           this.state.remainSylls - this.state.userSelect.numSyllables,

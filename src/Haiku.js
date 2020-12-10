@@ -1,14 +1,12 @@
-import { Component } from 'react';
+import { Component } from "react";
 
 class Haiku extends Component {
-
-    render(){
-        return(
-
-            <section>
-
-                <h3>Your Haiku</h3>
-
+  render() {
+    return (
+      <section>
+        <h3>Your Haiku</h3>
+        <p>{this.props.line1 && this.props.line1[0].word}</p>
+        {/* 
                 <p>
                     {this.props.line1
                     ? this.props.line1.join(" ")
@@ -25,13 +23,10 @@ class Haiku extends Component {
                     {this.props.line3
                     ? this.props.line3.join(" ")
                     : ''}
-                </p>
-
-            </section>
-
-        
-        )
-    }
+                </p> */}
+      </section>
+    );
+  }
 }
 
 export default Haiku;
