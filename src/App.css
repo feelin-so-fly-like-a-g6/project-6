@@ -6,7 +6,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 *, *:before, *:after {box-sizing: inherit}
 
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+.srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 
 
@@ -26,7 +26,6 @@ red: #db3a3a */
   background-image: linear-gradient(rgba(0, 70, 67, 0.7), rgba(0, 70, 67, 0.7)), url(./assets/boatsAndWaves.jpg) ;
   background-size: cover;
   text-align: center;
-  border: 2px blue solid;
 }
 
 h1,
@@ -35,6 +34,10 @@ h3,
 label,
 p {
   color: #ffffb0;
+}
+
+li {
+  cursor: pointer;
 }
 
 /* Intro Page */
