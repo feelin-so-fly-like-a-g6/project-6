@@ -1,12 +1,17 @@
-function Header () {
-    return(
-        <header>
-            <h1>Haikus Ahoy!</h1>
+import { Component } from 'react';
 
-            <h2>Knowing The Ropes</h2>
-            <p>Instructions on how to use the app: HERE</p>
-        </header>
-    )
+class Header extends Component {
+    render(){
+        return(
+            <header>
+                <h1>Haikus Ahoy!</h1>
+    
+                <h2>Knowing The Ropes</h2>
+                <button onClick={this.props.toggleModal}>Click here for instructions</button>
+    
+            </header>
+        )
+    }
 }
 
 export default Header

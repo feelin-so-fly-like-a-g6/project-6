@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.css";
 import Header from "./Header";
+import Modal from './Modal'
 import Intro from "./Intro";
 import Verse from "./Verse";
 import Haiku from "./Haiku";
@@ -38,6 +39,7 @@ class App extends Component {
       line2: "",
       line3: "",
       headerVisible: false,
+      modalVisible: false,
       allHaikus: [],
     };
   }
@@ -77,6 +79,13 @@ class App extends Component {
     });
   };
 
+  //function to Toggle Modal
+  toggleModal = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -87,7 +96,18 @@ class App extends Component {
         )}
 
         {/* Display only once the user clicks on 'create your own' - which sets the state to true */}
-        {this.state.headerVisible ? <Header /> : null}
+        {this.state.headerVisible 
+        ? <Header 
+            modalVisible={this.state.modalVisible}
+            toggleModal={this.toggleModal}/> 
+        : null}
+
+        {/* Display the modal based on the state */}
+        {this.state.modalVisible
+        ?   < Modal toggleModal={this.toggleModal}/>
+        : null
+        }
+      
 
         <main>
           
