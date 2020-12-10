@@ -23,7 +23,6 @@ class Compose extends Component {
   //on mount - get words and set state
   componentDidMount() {
     //API call to get the words that normally follow the word in the user input
-
     this.setState(
       {
         lineInProgress:
@@ -242,6 +241,7 @@ class Compose extends Component {
             Go to next line
           </button>
         )}
+
       </div>
     );
   }

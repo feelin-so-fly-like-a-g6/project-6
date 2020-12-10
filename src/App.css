@@ -9,7 +9,6 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 
-
 /* color pallete: */
 /* Deep green: #004643
 Lime green: #4bff72
@@ -17,13 +16,16 @@ yellow: #ffffb0
 red: #db3a3a */
 
 
+html {
+    font-size: 62.5%;
+}
+
 *, button {
   font-family: 'Kanit', sans-serif;
 }
 
-
 .App {
-  background-image: linear-gradient(rgba(0, 70, 67, 0.5), rgba(0, 70, 67, 0.7)), url(./assets/boatsAndWaves.jpg) ;
+  background-image: linear-gradient(rgba(0, 70, 67, 0.9), rgba(0, 70, 67, 0.9)), url(./assets/boatsAndWaves.jpg) ;
   background-size: cover;
   text-align: center;
 }
@@ -36,8 +38,13 @@ p {
   color: #ffffb0;
 }
 
+p {
+  font-size: 2rem;
+}
+
 li {
   cursor: pointer;
+  list-style: none;
 }
 
 /* Intro Page */
@@ -50,6 +57,7 @@ li {
   flex-direction: column;
   align-items: center;
 }
+
 .button {
   text-align: center;
   cursor: pointer;
@@ -57,14 +65,17 @@ li {
   border: none;
   outline: none;
   overflow: hidden;
+  font-size: 1.6rem;
 }
+
 .title {
-  font-size: 200px;
+  font-size: 20rem;
   text-shadow: 3px 3px 4px rgb(0, 24, 15);
   transition: 0.5s;
   color: #ffffb0;
   margin-top: 300px;
 }
+
 .title::after {
   content: '';
   display: block;
@@ -74,6 +85,7 @@ li {
   margin: 0 auto;
   transition: 0.5s;
 }
+
 .title:hover::after {
   width: 100%;
 }
@@ -81,7 +93,7 @@ li {
 /* ClassName that gets added on button onClick(intro.js) */
 .moveUp {
   color: #131616;
-  font-size: 100px;
+  font-size: 10rem;
 }
 
 .Introduction {
@@ -95,14 +107,29 @@ li {
   margin-top: 100px;
   padding: 50px;
 }
+
 .Introduction p {
   color: #004643;
 }
+
+.haiku {
+  margin: 50px auto;
+  padding: 20px 50px;
+  border-radius: 20px;
+  background-color:  rgba(255, 255, 176, 0.8);
+  width: fit-content;
+}
+
+.haiku h3,
+.haiku p {
+  color:#004643 !important;
+}
+
 .suggestedWords{
-  list-style-type: none;
   display: flex;
   justify-content: center;
 }
+
 .suggestedWords li {
   width: 100px;
   transition: all 0.4s ease-in-out;
@@ -110,16 +137,19 @@ li {
   background-color:#4bff72;
   text-align: center;
   margin: 5px;
+  font-size: 1.6rem;
 }
+
 .suggestedWords li:hover {
   transform: translateY(10px);
 }
+
 .wordPicker {
-  list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.6rem;
 }
 
 .wordOption {
@@ -127,6 +157,7 @@ li {
   width: 200px;
   background-color: #db3a3a;
   margin: 5px;
+  font-size: 1.6rem;
 }
 
 /* .verse p {
@@ -141,5 +172,34 @@ input#search {
   margin-left: 5px;
   background:rgba(0,0,0,0.2);
   color: #ffffb0;
-  font-size: 1rem;
+  font-size: 2rem;
+  width: 250px;
+  text-align: center;
 }
+
+/* Styling for LogBook section! */
+.logbook h2 {
+  font-size: 3rem;
+}
+
+.logbook p {
+  font-size: 1.6rem;
+}
+
+.logbook ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.logbook li {
+  border: 3px solid  #004643;
+}
+
+.logbook li:hover {
+  z-index: 10;
+  transform: scale(1.1);
+  background-color: #004643;
+  border: 2px solid #4bff72;
+}
+

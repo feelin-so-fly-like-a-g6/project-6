@@ -36,6 +36,7 @@ class Verse extends Component {
             lineNumber={this.props.lineNumber}
             line={this.props.line}
             changeVerseVisible={this.props.changeVerseVisible}
+            getHaikus={this.props.getHaikus}
           />
         ) : (
           <Search updateSearchQuery={this.updateSearchQuery} />
@@ -46,7 +47,7 @@ class Verse extends Component {
             Go to previous line
           </button>
         )}
-        {/* Strech goal: display haikus */}
+
       </div>
     );
   }
