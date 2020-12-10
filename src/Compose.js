@@ -203,7 +203,9 @@ class Compose extends Component {
                     data-word={word.word}
                     onClick={this.handleSelect}
                   >
-                    Word:{word.word} (# of syllables: {word.numSyllables})
+
+                    {word.word} | {word.numSyllables} syllables
+
                   </li>
                 ) : null;
               })}
@@ -217,6 +219,13 @@ class Compose extends Component {
             Go to next line
           </button>
         )}
+
+        
+        {/* If the remaining sylls = 0 AND if line number is 3 */}
+        {this.state.remainSylls === 0 && this.props.lineNumber === 3
+        ? <button>Save haiku</button>
+        : ''
+        }
       </div>
     );
   }

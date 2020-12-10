@@ -68,11 +68,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <main>
           {this.state.verseVisible === 0 && (
             <>
               <Intro changeVerseVisible={this.changeVerseVisible} />
-              <Header />
             </>
           )}
 
@@ -109,7 +109,7 @@ class App extends Component {
             <Verse
               updateHaiku={this.updateHaiku}
               lineNumber={3}
-              line={this.state.line1}
+              line={this.state.line3}
               totalNumSyllables={5}
               startAgain={this.startAgain}
               goToPreviousLine={this.goToPreviousLine}

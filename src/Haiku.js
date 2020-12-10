@@ -9,12 +9,23 @@ class Haiku extends Component {
 
                 <h3>Your Haiku</h3>
 
-                <p>{this.props.line1}</p>
-                <p>{this.props.line2}</p>
-                <p>{this.props.line3}</p>
+                <p>
+                    {this.props.line1
+                    ? this.props.line1.join(" ")
+                    : ''}
+                </p>
 
-                {/* Stretch goal */}
-                {/* <button>Save</button> */}
+                <p>
+                    {this.props.line2
+                    ? this.props.line2.join(" ")
+                    : ''}
+                </p>
+
+                <p>
+                    {this.props.line3
+                    ? this.props.line3.join(" ")
+                    : ''}
+                </p>
 
             </section>
 
