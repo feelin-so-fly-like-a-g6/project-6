@@ -22,12 +22,16 @@ class Verse extends Component {
     });
   };
 
+  reRender = () => {
+    this.forrceUpdate()
+  }
+
   render() {
     return (
       <div className="verse">
         {/* Repeat search + haiku 3x (once for each line) */}
         <h2>Line:{this.props.lineNumber}</h2>
-        {this.props.line.length > 1 || this.state.searchQuery.word ? (
+        {this.props.line.length > 0 || this.state.searchQuery.word ? (
           <Compose
             updateHaiku={this.props.updateHaiku}
             word={this.state.searchQuery.word}
@@ -37,17 +41,19 @@ class Verse extends Component {
             line={this.props.line}
             changeVerseVisible={this.props.changeVerseVisible}
             getHaikus={this.props.getHaikus}
+            reRenderVerse = {this.reRender}
           />
         ) : (
-          <Search updateSearchQuery={this.updateSearchQuery} />
-        )}
+          // ((!this.props.line) || (this.props.line === [])) && (
+            <Search updateSearchQuery={this.updateSearchQuery} />
+          )
+        }
 
         {(this.props.lineNumber === 2 || this.props.lineNumber === 3) && (
           <button onClick={this.props.goToPreviousLine}>
             Go to previous line
           </button>
         )}
-
       </div>
     );
   }

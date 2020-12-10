@@ -297,3 +297,19 @@ footer a {
   color: #4bff72;
   text-decoration: none;
 }
+
+/* Syles for Modal */
+.modal {
+  position: absolute;
+  transform: translateX(50%);
+  right: 50%;
+  top: 5%;
+  background-size: cover;
+  background-position: center;
+  background-color:  #004643;
+  /* background-image: linear-gradient(rgba(0, 70, 67, 0.6), rgba(0, 70, 67, 0.6)), url(./assets/pages.png) ; */
+  border-radius: 20px;
+  height: 500px;
+  width:650px;
+  padding: 20px;
+}
