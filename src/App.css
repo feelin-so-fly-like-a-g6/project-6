@@ -45,7 +45,7 @@ li {
   background-image: url(./assets/circleBrush.png);
   background-repeat: no-repeat;
   background-position: center;
-  height: 1200px;
+  height: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +60,8 @@ li {
 }
 .title {
   font-size: 200px;
-  text-shadow: 3px 3px 4px rgb(0, 24, 15);
+  /* -webkit-text-stroke: 3px #db3a3a; */
+  text-shadow: 3px 3px 4px rgb(0, 27, 70);
   transition: 0.5s;
   color: #ffffb0;
   margin-top: 300px;
@@ -80,24 +81,58 @@ li {
 
 /* ClassName that gets added on button onClick(intro.js) */
 .moveUp {
-  color: #131616;
+  color: #242424;
   font-size: 100px;
+  margin-top: 70px;
+  -webkit-text-stroke: 1px #ffffb0;
 }
 
+/* Introduction positions and display styles*/
 .Introduction {
   background-color: #ffffb0;
   opacity: 0.8;
-  border: 1px solid rgba(255, 255, 176, 0.8);
+  border: 4px solid #ffffb0;
   border-radius: 20px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   width: 800px;
-  margin-top: 100px;
+  margin-top: 50px;
   padding: 50px;
 }
 .Introduction p {
   color: #004643;
+  font-size: 20px;
 }
+/* Introduction content styles*/
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+article h1,
+article h2 {
+  color: #db3a3a;
+}
+article p {
+  margin-top: 0;
+}
+.CreateOwn {
+  font-size: 26px;
+  padding: 18px;
+  margin-top: 30px;
+  color: #db3a3a;
+  border: 4px solid #db3a3a;
+  transition: 0.2s;
+}
+.CreateOwn:hover {
+  text-shadow: 0px 0px 3px #db3a3a;
+  box-shadow: 0px 0px 3px #db3a3a;;
+}
+
+
+
+
+
 .suggestedWords{
   list-style-type: none;
   display: flex;
