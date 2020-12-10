@@ -83,6 +83,7 @@ class Search extends Component {
           <input
             type="text"
             id="search"
+            placeholder="Write your first word here"
             onChange={(e) => {
               this.getSuggestions(e.target.value);
             }}

@@ -24,7 +24,7 @@ class Compose extends Component {
   componentDidMount() {
     //API call to get the words that normally follow the word in the user input
     this.getWords(this.props.word);
-
+    //setState!
     this.setState(
       {
         lineInProgress:
@@ -220,12 +220,6 @@ class Compose extends Component {
           </button>
         )}
 
-        
-        {/* If the remaining sylls = 0 AND if line number is 3 */}
-        {this.state.remainSylls === 0 && this.props.lineNumber === 3
-        ? <button>Save haiku</button>
-        : ''
-        }
       </div>
     );
   }
