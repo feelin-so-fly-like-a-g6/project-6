@@ -1,6 +1,4 @@
 import { Component } from "react";
-import axios from "axios";
-import { CSSTransition } from "react-transition-group";
 import './App.css'
 
 class Intro extends Component {
@@ -20,9 +18,6 @@ class Intro extends Component {
             buttonState: className 
         });
     }
-
-
-
 
     render() {
         return (
