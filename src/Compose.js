@@ -126,6 +126,9 @@ class Compose extends Component {
       },
       //Once the lineInProgress state has been set, call the updateJaiku function to display the haiku on the page
       () => {
+        if (this.state.remainSylls === 0) {
+          this.props.changeVerseVisible();
+        }
         this.props.updateHaiku(
           this.props.lineNumber,
           this.state.lineInProgress
@@ -203,9 +206,7 @@ class Compose extends Component {
                     data-word={word.word}
                     onClick={this.handleSelect}
                   >
-
                     {word.word} | {word.numSyllables} syllables
-
                   </li>
                 ) : null;
               })}
@@ -219,13 +220,6 @@ class Compose extends Component {
             Go to next line
           </button>
         )}
-
-        
-        {/* If the remaining sylls = 0 AND if line number is 3 */}
-        {this.state.remainSylls === 0 && this.props.lineNumber === 3
-        ? <button>Save haiku</button>
-        : ''
-        }
       </div>
     );
   }
