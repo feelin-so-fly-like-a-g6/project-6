@@ -91,13 +91,7 @@ class App extends Component {
         {this.state.headerVisible ? <Header /> : null}
 
         <main>
-          {this.state.verseVisible < 4 && this.state.verseVisible > 0 && (
-            <Haiku
-              line1={this.state.line1}
-              line2={this.state.line2}
-              line3={this.state.line3}
-            />
-          )}
+          
 
           {this.state.verseVisible === 1 && (
             <Verse
@@ -129,6 +123,15 @@ class App extends Component {
               startAgain={this.startAgain}
               changeVerseVisible={this.changeVerseVisible}
               goToPreviousLine={this.goToPreviousLine}
+            />
+          )}
+
+          {this.state.verseVisible < 4 && this.state.verseVisible > 0 && (
+            <Haiku
+              line1={this.state.line1}
+              line2={this.state.line2}
+              line3={this.state.line3}
+              active={this.state.verseVisible}
             />
           )}
 
