@@ -51,8 +51,11 @@ li {
 header {
   padding-top: 15px;
 }
+
 header h1 {
   margin: 0;
+  font-size: 3rem;
+  padding: 15px;
 }
 
 /* Intro Page */
@@ -218,11 +221,10 @@ main section p {
 }
 input#search {
   border: none;
-  margin-left: 5px;
   background:rgba(0,0,0,0.2);
   color: #ffffb0;
   font-size: 2rem;
-  width: 250px;
+  width: 260px;
   text-align: center;
   padding: 1.5rem 2rem;
 }
@@ -300,13 +302,23 @@ footer a {
   position: absolute;
   transform: translateX(50%);
   right: 50%;
-  top: 5%;
+  top: 10%;
   background-size: cover;
   background-position: center;
   background-color:  #004643;
   /* background-image: linear-gradient(rgba(0, 70, 67, 0.6), rgba(0, 70, 67, 0.6)), url(./assets/pages.png) ; */
   border-radius: 20px;
-  height: 500px;
-  width:650px;
-  padding: 20px;
+  padding: 15px;
+  width: 60vw;
+}
+
+.modal h2 {
+  font-size: 2.5rem;
+}
+
+.modal button {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  font-size: 2rem;
 }
