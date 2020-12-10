@@ -22,16 +22,19 @@ class Compose extends Component {
 
   //on mount - get words and set state
   componentDidMount() {
+    this.calculateFilledSylls();
     //API call to get the words that normally follow the word in the user input
     this.setState(
       {
         lineInProgress:
           // this.props.line.length > 1 ? this.props.line : [this.props.word],
-          this.props.line.length > 1
+          this.props.line.length > 0
             ? this.props.line
             : [{ word: this.props.word, numSyllables: this.props.sylls }],
 
-        remainSylls: this.props.totalSylls - this.props.sylls,
+        remainSylls:
+          this.props.totalSylls -
+          (this.props.sylls ? this.props.sylls : this.calculateFilledSylls()),
         userSelect: {
           numSyllables: this.props.sylls,
           word: this.props.word,
@@ -47,6 +50,22 @@ class Compose extends Component {
       }
     );
   }
+
+  calculateFilledSylls = () => {
+    if (this.props.line.length > 0) {
+      const numOfFilledSylls = this.props.line
+        .map((wordObj) => {
+          return wordObj.numSyllables;
+        })
+        .reduce((accumulator, currentValue) => {
+          return accumulator + currentValue;
+        });
+      console.log(numOfFilledSylls);
+      return numOfFilledSylls;
+    } else {
+      return 0;
+    }
+  };
 
   //function to get words that normally follw the word that the user has input (or selected)
   getWords = (word) => {
@@ -149,15 +168,22 @@ class Compose extends Component {
   //function to remove the last word
   removeLastWord = (e) => {
     e.preventDefault();
+    
     const newLineInProgress = [...this.state.lineInProgress];
-    newLineInProgress.pop();
+    const deletedWord = newLineInProgress.pop();
     //Set line without last word in the state
     this.setState(
       {
         //remove the last item in line in progress array
         lineInProgress: newLineInProgress,
+        remainSylls: this.state.remainSylls + deletedWord.numSyllables,
       },
       () => {
+        //if line in prgress empty make verse update -> search appears
+        if(!this.state.lineInProgress===[]){
+          console.log('line empty')
+          this.props.reRenderVerse();
+        }
         //update haiku with new line in progress
         this.props.updateHaiku(
           this.props.lineNumber,
@@ -200,22 +226,22 @@ class Compose extends Component {
         <p>Syllables left: {this.state.remainSylls}</p>
 
         <h3>Word options:</h3>
+        {this.state.remainSylls < 5 && (
+          <div className="controls">
+            <button className="removeLastWord" onClick={this.removeLastWord}>
+              Remove the last word
+            </button>
 
+            <button
+              className="removeEverything"
+              onClick={this.removeEverything}
+            >
+              Remove everything
+            </button>
+          </div>
+        )}
         {this.state.remainSylls !== 0 ? (
           <form>
-            <div className="controls">
-              <button className="removeLastWord" onClick={this.removeLastWord}>
-                Remove the last word
-              </button>
-
-              <button
-                className="removeEverything"
-                onClick={this.removeEverything}
-              >
-                Remove everything
-              </button>
-            </div>
-
             <label htmlFor="word">Choose a word:</label>
             <ul className="wordPicker" name="wordSelect" id="word">
               {this.state.results.map((word) => {
@@ -241,7 +267,6 @@ class Compose extends Component {
             Go to next line
           </button>
         )}
-
       </div>
     );
   }
