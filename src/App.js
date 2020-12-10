@@ -3,6 +3,7 @@ import "./App.css";
 import Intro from "./Intro";
 import Verse from "./Verse";
 import Haiku from "./Haiku";
+import Logbook from './Logbook';
 import Footer from "./Footer";
 
 // PSEUDO CODE
@@ -34,8 +35,11 @@ class App extends Component {
       line1: "",
       line2: "",
       line3: "",
+      headerVisible: false,
+      allHaikus: []
     };
   }
+
 
   //Function to set the state of the line - will be passed as props to the verse
   updateHaiku = (numberOfLine, lineText) => {
@@ -47,6 +51,7 @@ class App extends Component {
     });
   };
 
+  //function to change which verse is being/displayed composed on the page
   changeVerseVisible = () => {
     this.state.verseVisible >= 3
       ? this.setState({
@@ -55,8 +60,13 @@ class App extends Component {
       : this.setState({
           verseVisible: ++this.state.verseVisible,
         });
+    //also show the header, when the verse is visible
+    this.setState({
+      headerVisible: true
+    })
   };
 
+  //function to allow the user to move to a previous line, mid composition
   goToPreviousLine = () => {
     const prevVerseVisible = this.state.verseVisible - 1;
     this.setState({
@@ -64,16 +74,28 @@ class App extends Component {
     });
   };
 
+  //function to set the sate of allHaikus - aka populate the array from Firebase
+  getHaikus = (array) => {
+    this.setState({
+      allHaikus: array
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <main>
           {this.state.verseVisible === 0 && (
             <>
               <Intro changeVerseVisible={this.changeVerseVisible} />
             </>
           )}
 
+          {/* Display only once the user clicks on 'create your own' - which sets the state to true
+          {this.state.headerVisible
+          ? <Header />
+          : null} */}
+
+          <main>
           {this.state.verseVisible > 0 && (
             <Haiku
               line1={this.state.line1}
@@ -113,6 +135,12 @@ class App extends Component {
               goToPreviousLine={this.goToPreviousLine}
             />
           )}
+
+        < Logbook 
+            allHaikus={this.state.allHaikus}
+            getHaikus={this.getHaikus}
+        />
+
         </main>
 
         <Footer />
