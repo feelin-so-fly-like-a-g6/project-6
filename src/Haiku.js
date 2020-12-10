@@ -1,10 +1,46 @@
 import { Component } from "react";
 
 class Haiku extends Component {
+
+ 
+  //function to highlight the word in progress (or something?)
+  highlight = () => {
+
+    const activeArray = this.props[`line${this.props.active}`]
+
+
+    console.log(activeArray);
+    //console.log(activeArray)
+    //setState
+    // this.setState({
+    // })
+  }
+  // this.props.line{this.props.active}
+
+  componentDidUpdate(){
+    this.highlight();
+  }
+
+
+
+   //Function to set the state of the line - will be passed as props to the verse
+  //  updateHaiku = (numberOfLine, lineText) => {
+  //   //storing the line number in a variable
+  //   const line = `line${numberOfLine}`;
+  //   console.log(typeof line);
+  //   this.setState({
+  //     [line]: lineText,
+  //   });
+  // };
+
+
+
+
+
   render() {
     return (
       <section className="haiku">
-        <h3>Your Haiku</h3>
+        <h3>Let's write some Haiku</h3>
 
         <p>
           {/* display only the words, not syllables */}

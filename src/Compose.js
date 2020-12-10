@@ -253,7 +253,7 @@ class Compose extends Component {
                     data-word={word.word}
                     onClick={this.handleSelect}
                   >
-                    {word.word} | {word.numSyllables} syllables
+                    {word.word}
                   </li>
                 ) : null;
               })}

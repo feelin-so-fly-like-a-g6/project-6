@@ -47,6 +47,14 @@ li {
   list-style: none;
 }
 
+/* Header */
+header {
+  padding-top: 15px;
+}
+header h1 {
+  margin: 0;
+}
+
 /* Intro Page */
 .Wrapper {
   background-image: url(./assets/circleBrush.png);
@@ -86,7 +94,8 @@ li {
   transition: 0.5s;
 }
 
-.title:hover::after {
+.title:hover::after,
+.title:focus::after {
   width: 100%;
 }
 
@@ -136,9 +145,10 @@ article p {
   border: 4px solid #db3a3a;
   transition: 0.2s;
 }
-.CreateOwn:hover {
+.CreateOwn:hover,
+.CreateOwn:focus {
   text-shadow: 0px 0px 3px #db3a3a;
-  box-shadow: 0px 0px 3px #db3a3a;;
+  box-shadow: 0px 0px 3px #db3a3a;
 }
 
 .haiku {
@@ -146,12 +156,17 @@ article p {
   padding: 20px 50px;
   border-radius: 20px;
   background-color:  rgba(255, 255, 176, 0.8);
-  width: fit-content;
+  width: 50rem;
+  height: 25rem;
 }
-
 .haiku h3,
 .haiku p {
   color:#004643 !important;
+}
+.haiku h3 {
+  font-size: 2.5rem;
+  margin-top: 0.6rem;
+  /* text-transform: uppercase; */
 }
 
 .suggestedWords{
@@ -167,15 +182,16 @@ article p {
   text-align: center;
   margin: 5px;
   font-size: 1.6rem;
+  border-radius: 15px;
 }
 
-.suggestedWords li:hover {
+.suggestedWords li:hover, 
+.suggestedWords li:focus {
   transform: translateY(10px);
 }
 
 .wordPicker {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
@@ -183,19 +199,23 @@ article p {
 
 .wordOption {
   padding: 15px;
-  width: 200px;
-  background-color: #db3a3a;
+  width: 150px;
+  background-color: #ffffb0;
+  box-shadow: 1px 1px 2px rgb(12, 29, 28);
   margin: 5px;
   font-size: 1.6rem;
+  border-radius: 15px;
+  color: #004643;
+  transition: 0.2s;
 }
-
-/* .verse p {
-  font-size: 3rem;
-} */
+.wordOption:hover, 
+.wordOption:focus {
+  background-color: #3ea512;
+  color: #004643;
+}
 main section p {
   font-size: 2rem;
 }
-
 input#search {
   border: none;
   margin-left: 5px;
@@ -204,6 +224,33 @@ input#search {
   font-size: 2rem;
   width: 250px;
   text-align: center;
+  padding: 1.5rem 2rem;
+}
+input#search:hover:active,
+input#search:focus:active {
+  border: 1px solid #ffffb0;
+  box-shadow: 0px 0px 3px #ffffb0;
+}
+label {
+  font-size: 2rem;
+}
+.removeLastWord,
+.removeEverything {
+  border-radius: 15px;
+  border: none;
+  font-size: 2rem;
+  width: 250px;
+  text-align: center;
+  padding: 1.5rem 2rem;
+  margin: 5px;
+  margin-bottom: 20px;
+}
+.removeLastWord:hover,
+.removeEverything:hover,
+.removeLastWord:focus,
+.removeEverything:focus {
+  background-color: #3ea512;
+  color: #004643;
 }
 
 /* Styling for LogBook section! */
@@ -225,10 +272,25 @@ input#search {
   border: 3px solid  #004643;
 }
 
-.logbook li:hover {
+.logbook li:hover,
+.logbook li:focus {
   z-index: 10;
   transform: scale(1.1);
   background-color: #004643;
   border: 2px solid #4bff72;
 }
 
+/* Footer styles */
+footer {
+  background-color: #004643;
+  padding: 2px;
+}
+
+footer p {
+  font-size: 1.6rem;
+}
+
+footer a {
+  color: #4bff72;
+  text-decoration: none;
+}
