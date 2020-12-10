@@ -168,6 +168,9 @@ article p {
   margin-top: 0.6rem;
   /* text-transform: uppercase; */
 }
+.CurrentWord {
+  border-bottom: 1px solid;
+}
 
 .suggestedWords{
   display: flex;

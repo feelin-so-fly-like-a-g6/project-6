@@ -35,9 +35,9 @@ class App extends Component {
     super();
     this.state = {
       verseVisible: 0,
-      line1: "",
-      line2: "",
-      line3: "",
+      line1: [],
+      line2: [],
+      line3: [],
       headerVisible: false,
       modalVisible: false,
       allHaikus: [],
