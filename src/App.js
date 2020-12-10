@@ -48,7 +48,6 @@ class App extends Component {
   updateHaiku = (numberOfLine, lineText) => {
     //storing the line number in a variable
     const line = `line${numberOfLine}`;
-    console.log(typeof line);
     this.setState({
       [line]: lineText,
     });
