@@ -23,15 +23,18 @@ class Compose extends Component {
   //on mount - get words and set state
   componentDidMount() {
     //API call to get the words that normally follow the word in the user input
-    this.getWords(this.props.word);
-    //setState!
     this.setState(
       {
         lineInProgress:
-          this.props.line.length > 1 ? this.props.line : [this.props.word],
+          // this.props.line.length > 1 ? this.props.line : [this.props.word],
+          this.props.line.length > 1
+            ? this.props.line
+            : [{ word: this.props.word, numSyllables: this.props.sylls }],
+
         remainSylls: this.props.totalSylls - this.props.sylls,
         userSelect: {
           numSyllables: this.props.sylls,
+          word: this.props.word,
         },
         //Puts the user word in Haiku component
       },
@@ -40,6 +43,7 @@ class Compose extends Component {
           this.props.lineNumber,
           this.state.lineInProgress
         );
+        this.getWords(this.state.userSelect.word);
       }
     );
   }
@@ -119,13 +123,19 @@ class Compose extends Component {
       {
         lineInProgress: [
           ...this.state.lineInProgress,
-          this.state.userSelect.word,
+          {
+            word: this.state.userSelect.word,
+            numSyllables: parseInt(this.state.userSelect.numSyllables),
+          },
         ],
         remainSylls:
           this.state.remainSylls - this.state.userSelect.numSyllables,
       },
       //Once the lineInProgress state has been set, call the updateJaiku function to display the haiku on the page
       () => {
+        if (this.state.remainSylls === 0) {
+          this.props.changeVerseVisible();
+        }
         this.props.updateHaiku(
           this.props.lineNumber,
           this.state.lineInProgress
@@ -144,12 +154,26 @@ class Compose extends Component {
     //Set line without last word in the state
     this.setState(
       {
+        //remove the last item in line in progress array
         lineInProgress: newLineInProgress,
       },
       () => {
+        //update haiku with new line in progress
         this.props.updateHaiku(
           this.props.lineNumber,
           this.state.lineInProgress
+        );
+        //put the last item in line in progress into userSelect property in the state
+        this.setState(
+          {
+            userSelect: this.state.lineInProgress[
+              this.state.lineInProgress.length - 1
+            ],
+          },
+          //call the function that get the usually following words (red buttons)
+          () => {
+            this.getWords(this.state.userSelect.word);
+          }
         );
       }
     );
@@ -203,9 +227,7 @@ class Compose extends Component {
                     data-word={word.word}
                     onClick={this.handleSelect}
                   >
-
                     {word.word} | {word.numSyllables} syllables
-
                   </li>
                 ) : null;
               })}
