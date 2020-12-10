@@ -34,9 +34,9 @@ class App extends Component {
     super();
     this.state = {
       verseVisible: 0,
-      line1: "",
-      line2: "",
-      line3: "",
+      line1: [],
+      line2: [],
+      line3: [],
       headerVisible: false,
       allHaikus: [],
     };
@@ -46,7 +46,8 @@ class App extends Component {
   updateHaiku = (numberOfLine, lineText) => {
     //storing the line number in a variable
     const line = `line${numberOfLine}`;
-    console.log(typeof line);
+    // console.log(typeof line);
+    // if(this.state[line].length == 0) lineText.word = lineText.word.to
     this.setState({
       [line]: lineText,
     });
