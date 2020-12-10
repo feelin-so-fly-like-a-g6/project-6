@@ -22,6 +22,7 @@ class Compose extends Component {
 
   //on mount - get words and set state
   componentDidMount() {
+    this.calculateFilledSylls();
     //API call to get the words that normally follow the word in the user input
     this.setState(
       {
@@ -31,7 +32,9 @@ class Compose extends Component {
             ? this.props.line
             : [{ word: this.props.word, numSyllables: this.props.sylls }],
 
-        remainSylls: this.props.totalSylls - this.props.sylls,
+        remainSylls:
+          this.props.totalSylls -
+          (this.props.sylls ? this.props.sylls : this.calculateFilledSylls()),
         userSelect: {
           numSyllables: this.props.sylls,
           word: this.props.word,
@@ -47,6 +50,20 @@ class Compose extends Component {
       }
     );
   }
+
+  calculateFilledSylls = () => {
+    if (this.props.line) {
+      const numOfFilledSylls = this.props.line
+        .map((wordObj) => {
+          return wordObj.numSyllables;
+        })
+        .reduce((accumulator, currentValue) => {
+          return accumulator + currentValue;
+        });
+      console.log(numOfFilledSylls);
+      return numOfFilledSylls;
+    }
+  };
 
   //function to get words that normally follw the word that the user has input (or selected)
   getWords = (word) => {
@@ -150,12 +167,14 @@ class Compose extends Component {
   removeLastWord = (e) => {
     e.preventDefault();
     const newLineInProgress = [...this.state.lineInProgress];
-    newLineInProgress.pop();
+    const deletedWord = newLineInProgress.pop();
+    console.log(deletedWord);
     //Set line without last word in the state
     this.setState(
       {
         //remove the last item in line in progress array
         lineInProgress: newLineInProgress,
+        remainSylls: this.state.remainSylls + deletedWord.numSyllables,
       },
       () => {
         //update haiku with new line in progress
@@ -200,22 +219,22 @@ class Compose extends Component {
         <p>Syllables left: {this.state.remainSylls}</p>
 
         <h3>Word options:</h3>
+        {this.state.remainSylls < 5 && (
+          <div className="controls">
+            <button className="removeLastWord" onClick={this.removeLastWord}>
+              Remove the last word
+            </button>
 
+            <button
+              className="removeEverything"
+              onClick={this.removeEverything}
+            >
+              Remove everything
+            </button>
+          </div>
+        )}
         {this.state.remainSylls !== 0 ? (
           <form>
-            <div className="controls">
-              <button className="removeLastWord" onClick={this.removeLastWord}>
-                Remove the last word
-              </button>
-
-              <button
-                className="removeEverything"
-                onClick={this.removeEverything}
-              >
-                Remove everything
-              </button>
-            </div>
-
             <label htmlFor="word">Choose a word:</label>
             <ul className="wordPicker" name="wordSelect" id="word">
               {this.state.results.map((word) => {
@@ -241,7 +260,6 @@ class Compose extends Component {
             Go to next line
           </button>
         )}
-
       </div>
     );
   }
