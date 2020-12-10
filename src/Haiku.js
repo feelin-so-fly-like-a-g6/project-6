@@ -7,6 +7,7 @@ class Haiku extends Component {
         <h3>Your Haiku</h3>
 
         <p>
+          {/* display only the words, not syllables */}
           {this.props.line1 &&
             this.props.line1
               .map((wordObject) => {
