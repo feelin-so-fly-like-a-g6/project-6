@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { GrClose } from 'react-icons/gr'
 
 class Modal extends Component {
 
@@ -19,7 +20,7 @@ class Modal extends Component {
         
         <p>Are you ready to set sail?</p>
 
-        <button onClick={this.props.toggleModal}>Close</button>
+        <button onClick={this.props.toggleModal}>< GrClose /></button>
 
         </section>
 

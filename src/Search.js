@@ -34,10 +34,10 @@ class Search extends Component {
             this.setState({
               showError: false
             })
-            return item;
             }
             //splice to only get 5 word autocompletions
         }).splice(0,5);
+
         //setState for the suggestions, they will then display on the page
         this.setState({
           suggestions: suggestions,
