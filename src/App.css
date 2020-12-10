@@ -63,6 +63,7 @@ li {
   text-shadow: 3px 3px 4px rgb(0, 24, 15);
   transition: 0.5s;
   color: #ffffb0;
+  margin-top: 300px;
 }
 .title::after {
   content: '';
@@ -76,11 +77,23 @@ li {
 .title:hover::after {
   width: 100%;
 }
+
+/* ClassName that gets added on button onClick(intro.js) */
+.moveUp {
+  color: #131616;
+  font-size: 100px;
+}
+
 .Introduction {
   background-color: #ffffb0;
+  opacity: 0.8;
+  border: 1px solid rgba(255, 255, 176, 0.8);
+  border-radius: 20px;
   display: flex;
   flex-direction: column; 
-  /* width: 700px; */
+  width: 800px;
+  margin-top: 100px;
+  padding: 50px;
 }
 .Introduction p {
   color: #004643;
