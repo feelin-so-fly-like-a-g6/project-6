@@ -5,25 +5,33 @@ class Haiku extends Component {
     return (
       <section>
         <h3>Your Haiku</h3>
-        <p>{this.props.line1 && this.props.line1[0].word}</p>
-        {/* 
-                <p>
-                    {this.props.line1
-                    ? this.props.line1.join(" ")
-                    : ''}
-                </p>
 
-                <p>
-                    {this.props.line2
-                    ? this.props.line2.join(" ")
-                    : ''}
-                </p>
+        <p>
+          {this.props.line1 &&
+            this.props.line1
+              .map((wordObject) => {
+                return wordObject.word;
+              })
+              .join(" ")}
+        </p>
 
-                <p>
-                    {this.props.line3
-                    ? this.props.line3.join(" ")
-                    : ''}
-                </p> */}
+        <p>
+          {this.props.line2 &&
+            this.props.line2
+              .map((wordObject) => {
+                return wordObject.word;
+              })
+              .join(" ")}
+        </p>
+
+        <p>
+          {this.props.line3 &&
+            this.props.line3
+              .map((wordObject) => {
+                return wordObject.word;
+              })
+              .join(" ")}
+        </p>
       </section>
     );
   }
