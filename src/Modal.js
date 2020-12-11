@@ -1,28 +1,50 @@
 import { Component } from "react";
-import { GrClose } from 'react-icons/gr'
+import { GrClose } from 'react-icons/gr';
+import { GiShipWheel } from 'react-icons/gi';
 
 class Modal extends Component {
 
     render() {
-        return(
+        return (
 
-        <section className="modal">
+            <section className="modal">
 
-        <h2>Knowing The Ropes</h2>
+                <div>
+                    <span className="flexContainer">< GiShipWheel /><h2>Knowing The Ropes</h2></span>
 
-        <p>Welcome to Haiku Ahoy, Sailor!</p>
+                    <button onClick={this.props.toggleModal}>< GrClose /></button>
 
-        <p>
-        
-        Instructions HERE
+                    <p>Welcome to Haiku Ahoy, Mate!</p>
 
-        </p>
-        
-        <p>Are you ready to set sail?</p>
+                    <h3>Starting word:</h3>
+                    <ul>
+                        <li>Step 1: Start entering letters into the text box.</li>
+                        <li>Step 2: Five autocomplete words will be displayed on the page - keep entering letters until you get the desired word.</li>
+                        <li>Step 3: Click on a word to select it as your starting word for the verse</li>
+                    </ul>
 
-        <button onClick={this.props.toggleModal}>< GrClose /></button>
+                    <h3>Following words:</h3>
+                    <ul>
+                        <li>Step 4: Once you have selected your first word by clicking on it    the app will generate a list of 5 words that often follow that word.</ li>
+                        <li>Step 5: Click on a word to add it to the end of your verse.</li>
+                        <li>Step 6: The app will generate new words until you have reached the  appropriate number of syllables for that verse (5 - 7 - 5).</li>
+                    </ul>
 
-        </section>
+                    <h3>Going back:</h3>
+                    <ul>
+                        <li>If you want to change your haiku in progress, click on the “go to   previous line” button. You will then be able to remove words and  obtain new suggestions. </li>
+                    </ul>
+
+                    <h3>Starting over:</h3>
+                    <ul>
+                        <li>Clicking on the “start over” button will clear your haiku in    progress and bring you back to the beginning!</li>
+                    </ul>
+
+                    <p>Once you have finished your haiku, you may save it to the log book for other guests to read.</p>
+
+                    <p>Are you ready to set sail?</p></div>
+
+            </section>
 
         )
     }
