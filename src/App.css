@@ -334,3 +334,44 @@ footer a {
   padding: 10px;
   font-size: 2rem;
 }
+
+/* Media Queries */
+@media only screen and (max-width: 1111px) {
+  .title::after {
+    width: 10%;
+  }
+  .title:hover::after,
+  .title:focus::after {
+  width: 55%;
+  }
+
+}
+
+@media only screen and (max-width: 930px) {
+  .Wrapper {
+  background-size: 800px 800px;
+}
+}
+
+@media only screen and (max-width: 800px) {
+  .title {
+  font-size: 10rem;
+  }
+  .Wrapper {
+  background-size: 400px 400px;
+  background-position: 50% 30%;
+}
+}
+
+@media only screen and (max-width: 800px) {
+  .Wrapper {
+  background-position: 50% 35%;
+}
+}
+
+@media only screen and (max-width: 420px) {
+  .Wrapper {
+  background-size: 300px 300px;
+  background-position: 50% 35%;
+}
+}

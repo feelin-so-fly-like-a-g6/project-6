@@ -34,6 +34,8 @@ class Search extends Component {
             this.setState({
               showError: false
             })
+            return item;
+            
             }
             console.log(item.word.charAt(0).toUpperCase() + item.word.slice(1))
             // item.word.charAt(0).toUpperCase() + item.word.slice(1)
@@ -46,8 +48,8 @@ class Search extends Component {
             word:item.word.charAt(0).toUpperCase() + item.word.slice(1),
             numSyllables:item.numSyllables
           }
-          // item.word.charAt(0).toUpperCase() + item.word.slice(1);
         })
+
         //setState for the suggestions, they will then display on the page
         this.setState({
           suggestions: capitalizedArray,
