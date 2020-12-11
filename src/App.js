@@ -87,6 +87,15 @@ class App extends Component {
     })
   }
 
+  //function to clear all lines
+  clear = () => {
+    this.setState({
+      line1: [],
+      line2: [],
+      line3: []
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -159,6 +168,7 @@ class App extends Component {
               line1={this.state.line1}
               line2={this.state.line2}
               line3={this.state.line3}
+              clear={this.clear}
             />
           )}
 

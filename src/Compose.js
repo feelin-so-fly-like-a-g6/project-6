@@ -114,8 +114,6 @@ class Compose extends Component {
 
   //handleselect to set that to the word and syllable count
   handleSelect = (e) => {
-    //if user presses the key Enter (character 13)
-    if (e.charCode === 13){
     //store th number of syllables in a variable (because the path is long!)
     const word = e.target.dataset.word;
     const sylls = e.target.dataset.syll;
@@ -134,7 +132,7 @@ class Compose extends Component {
       }
     );
   };
-}
+
 
   //When user selects a word
   //call the function to get words + filter
