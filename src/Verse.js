@@ -14,6 +14,10 @@ class Verse extends Component {
   }
 
   updateSearchQuery = ({ word, numSyllables }) => {
+    
+    word = word.charAt(0).toUpperCase() + word.slice(1);
+
+
     this.setState({
       searchQuery: {
         word: word,
@@ -30,7 +34,6 @@ class Verse extends Component {
     return (
       <div className="verse">
         {/* Repeat search + haiku 3x (once for each line) */}
-        <h2>Line:{this.props.lineNumber}</h2>
         {this.props.line.length > 0 || this.state.searchQuery.word ? (
           <Compose
             updateHaiku={this.props.updateHaiku}

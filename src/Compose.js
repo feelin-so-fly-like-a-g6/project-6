@@ -225,21 +225,8 @@ class Compose extends Component {
       <div className="Compose">
         <p>Syllables left: {this.state.remainSylls}</p>
 
-        <h3>Word options:</h3>
-        {this.state.remainSylls < 5 && (
-          <div className="controls">
-            <button className="removeLastWord" onClick={this.removeLastWord}>
-              Remove the last word
-            </button>
+        <h3 className="srOnly">Word options:</h3>
 
-            <button
-              className="removeEverything"
-              onClick={this.removeEverything}
-            >
-              Remove everything
-            </button>
-          </div>
-        )}
         {this.state.remainSylls !== 0 ? (
           <form>
             <label htmlFor="word">Choose a word:</label>
@@ -262,10 +249,25 @@ class Compose extends Component {
         ) : (
           "Line complete"
         )}
-        {this.state.remainSylls === 0 && (
+        {/* {this.state.remainSylls === 0 && (
           <button onClick={this.props.changeVerseVisible}>
             Go to next line
           </button>
+        )} */}
+
+{this.state.remainSylls < 5 && (
+          <div className="controls">
+            <button className="removeLastWord" onClick={this.removeLastWord}>
+              Remove the last word
+            </button>
+
+            <button
+              className="removeEverything"
+              onClick={this.removeEverything}
+            >
+              Start over
+            </button>
+          </div>
         )}
       </div>
     );

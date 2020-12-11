@@ -35,12 +35,22 @@ class Search extends Component {
               showError: false
             })
             }
+            console.log(item.word.charAt(0).toUpperCase() + item.word.slice(1))
+            // item.word.charAt(0).toUpperCase() + item.word.slice(1)
+            return item.word.charAt(0).toUpperCase() + item.word.slice(1);
             //splice to only get 5 word autocompletions
         }).splice(0,5);
 
+        const capitalizedArray = suggestions.map((item) => {
+          return {
+            word:item.word.charAt(0).toUpperCase() + item.word.slice(1),
+            numSyllables:item.numSyllables
+          }
+          // item.word.charAt(0).toUpperCase() + item.word.slice(1);
+        })
         //setState for the suggestions, they will then display on the page
         this.setState({
-          suggestions: suggestions,
+          suggestions: capitalizedArray,
         });
       })
       } else {
@@ -81,6 +91,7 @@ class Search extends Component {
             Input your word
           </label>
           <input
+            autoComplete="off"
             type="text"
             id="search"
             placeholder="Enter starting word here"

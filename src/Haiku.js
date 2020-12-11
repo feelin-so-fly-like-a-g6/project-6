@@ -3,41 +3,30 @@ import { Component } from "react";
 class Haiku extends Component {
 
  
-  //function to highlight the word in progress (or something?)
-  highlight = () => {
+  // //function to highlight the word in progress (or something?)
+  // highlight = () => {
 
-    const activeArray = this.props[`line${this.props.active}`]
-
-
-    console.log(activeArray);
-    //console.log(activeArray)
-    //setState
-    // this.setState({
-    // })
-  }
-  // this.props.line{this.props.active}
-
-  componentDidUpdate(){
-    this.highlight();
-  }
+  //   const activeArray = this.props[`line${this.props.active}`]
 
 
+  //   console.log(activeArray);
+  //   //console.log(activeArray)
+  //   //setState
+  //   // this.setState({
+  //   // })
+  // }
 
-   //Function to set the state of the line - will be passed as props to the verse
-  //  updateHaiku = (numberOfLine, lineText) => {
-  //   //storing the line number in a variable
-  //   const line = `line${numberOfLine}`;
-  //   console.log(typeof line);
-  //   this.setState({
-  //     [line]: lineText,
-  //   });
-  // };
+
+  // componentDidUpdate(){
+  //   this.highlight();
+  // }
+
 
   printLine(lineNumber){
     // checks if the line is empty
-    if (this.props[`line${lineNumber}`].length != 0){
+    if (this.props[`line${lineNumber}`].length !== 0){
       // checks if the lineNumber is euqal to the active line
-      if(lineNumber == this.props.active && this.props.active < 4) {
+      if(lineNumber === this.props.active && this.props.active < 4) {
         // returns the line and excludes the last word by using .slice .length -1
         return this.props[`line${this.props.active}`].slice(0,this.props[`line${this.props.active}`].length-1)
         .map((wordObject) => {
@@ -62,7 +51,7 @@ class Haiku extends Component {
       // gets the length of the line
       lineLength = this.props[`line${this.props.active}`].length;
     // if the length is not 0, and the line is the active line: print the final word with the class of CurrentWord which has the underline styling in css
-      if(this.props[`line${this.props.active}`].length != 0 && lineNumber == this.props.active) {
+      if(this.props[`line${this.props.active}`].length !== 0 && lineNumber === this.props.active) {
         return <span className="CurrentWord">{this.props[`line${this.props.active}`][lineLength-1].word}</span>;
       }
     }
@@ -79,6 +68,7 @@ class Haiku extends Component {
         <h3>Let's write some Haiku</h3>
 
         <p>
+          <span> </span>
           {/* display only the words, not syllables */}
           {this.props.line1 &&
           // printLine: prints the verse and excludes the last word
@@ -89,6 +79,7 @@ class Haiku extends Component {
         </p>
 
         <p>
+          <span> </span>
           {/* display only the words, not syllables */}
           {this.props.line1 &&
               this.printLine(2)}
@@ -97,6 +88,7 @@ class Haiku extends Component {
         </p>
 
         <p>
+          <span> </span>
           {/* display only the words, not syllables */}
           {this.props.line1 &&
               this.printLine(3)}
