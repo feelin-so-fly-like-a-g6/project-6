@@ -198,7 +198,9 @@ class Compose extends Component {
           },
           //call the function that get the usually following words (red buttons)
           () => {
-            this.getWords(this.state.userSelect.word);
+            if(this.state.userSelect) {
+              this.getWords(this.state.userSelect.word);
+            }
           }
         );
       }

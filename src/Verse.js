@@ -47,7 +47,6 @@ class Verse extends Component {
             reRenderVerse = {this.reRender}
           />
         ) : (
-          // ((!this.props.line) || (this.props.line === [])) && (
             <Search updateSearchQuery={this.updateSearchQuery} />
           )
         }
