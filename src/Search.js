@@ -13,7 +13,6 @@ class Search extends Component {
 
   //this function gets suggested words for autocomplete from api
   getSuggestions = (word) => {
-    console.log('getting suggestions')
     //check if the word is a valid word/letter character
     let wordParams = /^([a-z\w])+$/;
     //if so, lets get some words from our API!
@@ -35,11 +34,11 @@ class Search extends Component {
             this.setState({
               showError: false
             })
-            }
             return item;
+            
+            }
             //splice to only get 5 word autocompletions
         }).splice(0,5);
-
         //setState for the suggestions, they will then display on the page
         this.setState({
           suggestions: suggestions,
