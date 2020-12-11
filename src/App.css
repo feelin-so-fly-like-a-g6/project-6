@@ -75,6 +75,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .button {
@@ -92,7 +93,7 @@ h2 {
   text-shadow: 3px 3px 4px rgb(0, 24, 15);
   transition: 0.5s;
   color: #ffffb0;
-  margin-top: 300px;
+  margin-bottom: 100px;
 }
 
 .title::after {
@@ -134,6 +135,12 @@ h2 {
 .Introduction p {
   color: #004643;
   font-size: 20px;
+}
+
+.Intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* Introduction content styles*/
 article {
@@ -353,9 +360,14 @@ footer a {
 }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 830px) {
+  div.Introduction {
+    max-width: 500px;
+    margin-top: -250px;
+  }
   .title {
   font-size: 10rem;
+  margin-bottom: 250px;
   }
   .Wrapper {
   background-size: 400px 400px;
@@ -363,12 +375,11 @@ footer a {
 }
 }
 
-@media only screen and (max-width: 800px) {
-  .Wrapper {
-  background-position: 50% 35%;
+@media only screen and (max-width: 530px) {
+  div.Introduction {
+    max-width: 500px;
+  }
 }
-}
-
 @media only screen and (max-width: 420px) {
   .Wrapper {
   background-size: 300px 300px;
