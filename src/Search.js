@@ -84,6 +84,7 @@ class Search extends Component {
       //this function updates the state in app.js with the word that user clicked and the number of syllables in that word
       this.props.updateSearchQuery(data[0]);
     });
+
   };
   
   render() {

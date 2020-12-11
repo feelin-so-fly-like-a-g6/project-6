@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
 
+
 //Make a second API call within the component, passing the word as a parameter.
 //For the API call, we need: user word
 // This API call will return a list of words that usually follow that word in the English language
@@ -274,6 +275,7 @@ class Compose extends Component {
       </div>
     );
   }
+
 }
 
 export default Compose;

@@ -9,6 +9,7 @@ import Logbook from "./Logbook";
 import Footer from "./Footer";
 import Finish from "./Finish";
 
+
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
 // On change OR on submit: Make an API call to get the number of syllables:
@@ -133,6 +134,7 @@ class App extends Component {
             />
           )}
 
+
           {this.state.verseVisible === 3 && (
             <Verse
               updateHaiku={this.updateHaiku}
@@ -161,6 +163,7 @@ class App extends Component {
               line3={this.state.line3}
             />
           )}
+
 
           {this.state.verseVisible <= 4 && this.state.verseVisible > 0 && (
             <Logbook
