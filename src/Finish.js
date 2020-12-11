@@ -34,6 +34,8 @@ class Finish extends Component {
     dbRef.push(haiku);
     //hide the button
     document.querySelector(".save").style.display = 'none';
+    //call the clear function
+    this.props.clear();
   };
 
   render() {
@@ -41,6 +43,7 @@ class Finish extends Component {
       <div className="finish">
         <h2>Smooth Sailing! Your haiku is complete.</h2>
         <button className="save" onClick={this.saveHaiku}>Save to Log Book</button>
+
         <Haiku
           line1={this.props.line1}
           line2={this.props.line2}

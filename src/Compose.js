@@ -1,7 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
 
-
 //Make a second API call within the component, passing the word as a parameter.
 //For the API call, we need: user word
 // This API call will return a list of words that usually follow that word in the English language
@@ -61,6 +60,7 @@ class Compose extends Component {
         .reduce((accumulator, currentValue) => {
           return accumulator + currentValue;
         });
+      console.log(numOfFilledSylls);
       return numOfFilledSylls;
     } else {
       return 0;
@@ -133,6 +133,7 @@ class Compose extends Component {
     );
   };
 
+
   //When user selects a word
   //call the function to get words + filter
   handleSubmit = (e) => {
@@ -181,6 +182,7 @@ class Compose extends Component {
       () => {
         //if line in prgress empty make verse update -> search appears
         if(!this.state.lineInProgress===[]){
+          console.log('line empty')
           this.props.reRenderVerse();
         }
         //update haiku with new line in progress
@@ -201,7 +203,6 @@ class Compose extends Component {
             if(this.state.userSelect) {
               this.getWords(this.state.userSelect.word);
             }
-
           }
         );
       }
@@ -233,12 +234,14 @@ class Compose extends Component {
             <ul className="wordPicker" name="wordSelect" id="word">
               {this.state.results.map((word) => {
                 return word.word !== "." ? (
-                  <li
+                  <li 
+                    tabIndex="0"
                     className="wordOption"
                     key={word.score}
                     data-syll={word.numSyllables}
                     data-word={word.word}
                     onClick={this.handleSelect}
+                    onKeyPress={this.handleSelect}
                   >
                     {word.word}
                   </li>
@@ -248,7 +251,7 @@ class Compose extends Component {
             <p>Syllables left: {this.state.remainSylls}</p>
           </form>
         ) : (
-          "Line complete"
+          null
         )}
         {/* {this.state.remainSylls === 0 && (
           <button onClick={this.props.changeVerseVisible}>
@@ -266,14 +269,13 @@ class Compose extends Component {
               className="removeEverything"
               onClick={this.removeEverything}
             >
-              Clear line
+              Start over
             </button>
           </div>
         )}
       </div>
     );
   }
-
 }
 
 export default Compose;
