@@ -38,6 +38,10 @@ p {
   color: #ffffb0;
 }
 
+h1, h2, h3 {
+  font-weight: 700,
+}
+
 p {
   font-size: 2rem;
 }
@@ -56,6 +60,10 @@ header h1 {
   margin: 0;
   font-size: 3rem;
   padding: 15px;
+}
+
+h2 {
+  font-size: 2.5rem;
 }
 
 /* Intro Page */
@@ -181,10 +189,10 @@ article p {
 }
 
 .suggestedWords li {
-  width: 100px;
+  width: 120px;
   transition: all 0.4s ease-in-out;
   padding: 15px;
-  background-color:#4bff72;
+  background-color:#ffffb0;
   text-align: center;
   margin: 5px;
   font-size: 1.6rem;
@@ -194,6 +202,7 @@ article p {
 .suggestedWords li:hover, 
 .suggestedWords li:focus {
   transform: translateY(10px);
+  background-color: #4bff72;
 }
 
 .wordPicker {
@@ -216,7 +225,7 @@ article p {
 }
 .wordOption:hover, 
 .wordOption:focus {
-  background-color: #3ea512;
+  background-color: #4bff72;
   color: #004643;
 }
 main section p {
@@ -225,11 +234,12 @@ main section p {
 input#search {
   border: none;
   background:rgba(0,0,0,0.2);
-  color: #ffffb0;
+  color:  #ffffb0;
   font-size: 2rem;
   width: 260px;
   text-align: center;
   padding: 1.5rem 2rem;
+  margin-top: 50px;
 }
 input#search:hover:active,
 input#search:focus:active {
@@ -243,18 +253,21 @@ label {
 .removeEverything {
   border-radius: 15px;
   border: none;
-  font-size: 2rem;
-  width: 250px;
+  font-size: 1.6rem;
+  width: 200px;
   text-align: center;
   padding: 1.5rem 2rem;
   margin: 5px;
   margin-bottom: 20px;
+  background-color: #004643;
+  color :#ffffb0;
+  border: 1px solid #ffffb0;
 }
 .removeLastWord:hover,
 .removeEverything:hover,
 .removeLastWord:focus,
 .removeEverything:focus {
-  background-color: #3ea512;
+  background-color: #4bff72;;
   color: #004643;
 }
 
@@ -313,10 +326,6 @@ footer a {
   border-radius: 20px;
   padding: 15px;
   width: 60vw;
-}
-
-.modal h2 {
-  font-size: 2.5rem;
 }
 
 .modal button {

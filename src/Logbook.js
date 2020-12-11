@@ -29,7 +29,7 @@ class Logbook extends Component {
 
                     this.props.allHaikus.map((haiku) => {
                         return (
-                            <li>
+                            <li tabIndex="0">
                                 <p>{haiku.line1}</p>
                                 <p>{haiku.line2}</p>
                                 <p>{haiku.line3}</p>
