@@ -221,6 +221,8 @@ article p {
 .suggestedWords{
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
 .suggestedWords li {
@@ -245,8 +247,8 @@ article p {
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
+  padding: 10px;
 }
-
 .wordOption {
   padding: 15px;
   width: 150px;
@@ -319,6 +321,7 @@ label {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  padding: 10px;
 }
 
 .logbook li {
@@ -436,6 +439,9 @@ footer a {
   .Introduction p {
     font-size: 1.6rem;
   }
+  section.haiku {
+    width: 400px;
+  }
 }
 @media only screen and (max-width: 420px) {
   .Wrapper {
@@ -447,5 +453,17 @@ footer a {
   }
   .CreateOwn {
     font-size: 2rem;
+  }
+  section.haiku {
+    width: 300px;
+  }
+  .logbook ul {
+    grid-template-columns: 1fr;
+  }
+  .suggestedWords {
+    flex-direction: column;
+  }
+  .wordPicker {
+    flex-direction: column;
   }
 }
