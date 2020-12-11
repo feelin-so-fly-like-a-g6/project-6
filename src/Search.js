@@ -116,7 +116,7 @@ class Search extends Component {
                   tabIndex="0"
                   key={word.score}
                   onClick={this.getWordInfo}
-                  onKeyDown={this.getWordInfo}
+                  onKeyPress={this.getWordInfo}
                   data-name={word.word}
                 >
                   {word.word}
