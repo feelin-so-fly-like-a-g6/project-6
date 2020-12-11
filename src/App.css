@@ -372,7 +372,10 @@ footer a {
   .Wrapper {
   background-size: 400px 400px;
   background-position: 50% 30%;
-}
+  }
+  .logbook ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media only screen and (max-width: 530px) {
