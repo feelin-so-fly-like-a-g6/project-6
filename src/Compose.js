@@ -198,9 +198,11 @@ class Compose extends Component {
           },
           //call the function that get the usually following words (red buttons)
           () => {
+
             if(this.state.userSelect) {
               this.getWords(this.state.userSelect.word);
             }
+
           }
         );
       }
@@ -225,9 +227,6 @@ class Compose extends Component {
   render() {
     return (
       <div className="Compose">
-        <p>Syllables left: {this.state.remainSylls}</p>
-
-        <h3 className="srOnly">Word options:</h3>
 
         {this.state.remainSylls !== 0 ? (
           <form>
@@ -247,6 +246,7 @@ class Compose extends Component {
                 ) : null;
               })}
             </ul>
+            <p>Syllables left: {this.state.remainSylls}</p>
           </form>
         ) : (
           "Line complete"

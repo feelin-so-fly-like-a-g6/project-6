@@ -39,7 +39,8 @@ p {
 }
 
 h1, h2, h3 {
-  font-weight: 700,
+  font-weight: 700;
+  text-shadow: 4px 4px 3px rgb(0, 24, 15);
 }
 
 p {
@@ -62,8 +63,28 @@ header h1 {
   padding: 15px;
 }
 
+header button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin-bottom: 25px;
+}
+
 h2 {
   font-size: 2.5rem;
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #ffffb0;
+}
+
+.flexContainer h2 {
+  margin-left: 10px;
 }
 
 /* Intro Page */
@@ -93,7 +114,9 @@ h2 {
   text-shadow: 3px 3px 4px rgb(0, 24, 15);
   transition: 0.5s;
   color: #ffffb0;
-  margin-bottom: 100px;
+  margin-top: 300px;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 700;
 }
 
 .title::after {
@@ -137,11 +160,16 @@ h2 {
   font-size: 20px;
 }
 
+.Introduction h1, .Introduction h2 {
+  text-shadow: none;
+}
+
 .Intro {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 /* Introduction content styles*/
 article {
   display: flex;
@@ -184,7 +212,7 @@ article p {
 .haiku h3 {
   font-size: 2.5rem;
   margin-top: 0.6rem;
-  /* text-transform: uppercase; */
+  text-shadow: none;
 }
 .CurrentWord {
   border-bottom: 1px solid;
@@ -329,10 +357,11 @@ footer a {
   background-size: cover;
   background-position: center;
   background-color:  #004643;
-  /* background-image: linear-gradient(rgba(0, 70, 67, 0.6), rgba(0, 70, 67, 0.6)), url(./assets/pages.png) ; */
+  background-image: url(./assets/circleBrush.png) ;
   border-radius: 20px;
   padding: 15px;
-  width: 60vw;
+  min-width: 80vw;
+  border: 1px solid  #db3a3a;
 }
 
 .modal button {
@@ -340,7 +369,29 @@ footer a {
   border: none;
   padding: 10px;
   font-size: 2rem;
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }
+
+.modal li {
+  cursor: default;
+  color: #ffffb0;
+  text-shadow: 4px 4px 3px rgb(0, 24, 15);
+  font-size: 1.8rem;
+  text-align: left;
+}
+
+.modal h3 {
+  font-size: 2rem;
+  text-shadow: 4px 4px 3px rgb(0, 24, 15);
+}
+
+.modal p {
+  text-shadow: 4px 4px 3px rgb(0, 24, 15);
+}
+
+
 
 /* Media Queries */
 @media only screen and (max-width: 1111px) {
