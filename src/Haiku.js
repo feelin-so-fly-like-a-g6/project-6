@@ -1,156 +1,110 @@
 import { Component } from "react";
-import axios from "axios";
-
-// LATEST UPDATE: 
-//Trying to figure out how to pass two values in the option value on line 136 (the word AND the numSyllables) so that we can retreive both. The word for the searc (and display of the line) and the numb of syllables so that we can keep count of how many syllable total we have, because we cannot exceed the 5 or 7, AND we must let the user knwo that they have reached the total number
-
-//Make a second API call within the component, passing the word as a parameter.
-//For the API call, we need: user word
-// This API call will return a list of words that usually follow that word in the English language
-// Filter/other method that array of results to get the words with the correct number of syllables (ie if the user inputs a 2 syllable word, we will give them results with <= 3 syllables)
 
 class Haiku extends Component {
 
-    constructor(){
-        super();
-        this.state = {
-            lineCount: 5, //5 or 7 - passed in as prop
+ 
+  // //function to highlight the word in progress (or something?)
+  // highlight = () => {
 
-            line: '', //to display the full line (user word + selected words)
-            userSelect: '', //the word the user selects
-            userSelectSyll: null, //num of syllables for the selected words
-            totalSylls: null, //Could also be remaining
-            results: [], //array of words returns from the API call
-        }
+  //   const activeArray = this.props[`line${this.props.active}`]
+
+
+  //   console.log(activeArray);
+  //   //console.log(activeArray)
+  //   //setState
+  //   // this.setState({
+  //   // })
+  // }
+
+
+  // componentDidUpdate(){
+  //   this.highlight();
+  // }
+
+
+  printLine(lineNumber){
+    // checks if the line is empty
+    if (this.props[`line${lineNumber}`].length !== 0){
+      // checks if the lineNumber is euqal to the active line
+      if(lineNumber === this.props.active && this.props.active < 4) {
+        // returns the line and excludes the last word by using .slice .length -1
+        return this.props[`line${this.props.active}`].slice(0,this.props[`line${this.props.active}`].length-1)
+        .map((wordObject) => {
+          return wordObject.word;
+        })
+        .join(" ");
+      } else {// prints the whole verse if the line is not the active one
+        return this.props[`line${lineNumber}`].map((wordObject) => {
+          return wordObject.word;
+        })
+        .join(" ");
+      }
     }
-
-
-    //function to filter the array of results to only get the matching number of syllables
-    filterResults = () => {
-        //find the number of syllables needed
-        const syllsNeeded = this.state.lineCount - this.props.sylls;
-        console.log(syllsNeeded);
     
-        //filter the array to find the words that have a syllable count that is smaller or equal to syllsNeeded
-        const filteredArray = this.state.results.filter((word) => {
-            return word.numSyllables <= syllsNeeded
-        })
+  }
 
-        //setState results with the filtered array
-        this.setState({
-            results: filteredArray
-        })
-        console.log(this.state.results);
+  // Prints the last word that was excluded in the printLine function
+  lastWord(lineNumber){
+    let lineLength = 0;
+    // checks that the active line is less than 4
+    if (this.props.active < 4){
+      // gets the length of the line
+      lineLength = this.props[`line${this.props.active}`].length;
+    // if the length is not 0, and the line is the active line: print the final word with the class of CurrentWord which has the underline styling in css
+      if(this.props[`line${this.props.active}`].length !== 0 && lineNumber === this.props.active) {
+        return <span className="CurrentWord">{this.props[`line${this.props.active}`][lineLength-1].word}</span>;
+      }
     }
+  }
 
 
-    //function to get words that normally follw the word that the user has input (or selected)
-    getWords= (word) => {
-        //API call to get the words that normally follow the word in the user input
-        axios({
-            url: "https://api.datamuse.com/words",
-            responseType: "json",
-            method: "GET",
-            params: {
-                rel_bga: word, //will be prop or userSelect
-                md: 's',
-            },
-        }).then((response)=> {
-            this.setState({
-                results: response.data
-            })
-            //call the function to filter the results
-            this.filterResults();
-        })
-    }
 
 
-    componentDidMount(){
-        //API call to get the words that normally follow the word in the user input
-        this.getWords(this.props.word);
 
-        this.setState({
-            line: this.props.word,
-            totalSylls: this.props.sylls
-        })
-    }
+  render() {
+    return (
+      
+      <section className="haiku">
+        <h3>Let's write some Haiku</h3>
 
+        <p>
+          <span> </span>
+          {/* display only the words, not syllables */}
+          {this.props.line1 &&
+          // printLine: prints the verse and excludes the last word
+          // lastWord: prints the last word with the underline
+              this.printLine(1)}
+              <span> </span>
+              {this.lastWord(1)}
+        </p>
 
-    handleSelect = (input) => {
+        <p>
+          <span> </span>
+          {/* display only the words, not syllables */}
+          {this.props.line1 &&
+              this.printLine(2)}
+              <span> </span>
+              {this.lastWord(2)}
+        </p>
 
-        console.log(input.target.value);
-        this.setState({
-            userSelect: input.target.value['word'],
-            //HOW TO GET NUMBER OF SYLLABLES
-            // userSelectSyll: 
-        })
-    }
+        <p>
+          <span> </span>
+          {/* display only the words, not syllables */}
+          {this.props.line1 &&
+              this.printLine(3)}
+              <span> </span>
+              {this.lastWord(3)}
+        </p>
 
-
-    //When user selects a word
-        //call the function to get words + filter
-    handleSubmit = (e) => {
-        e.preventDefault();
-
-        this.setState({
-            line: `${this.state.line} ${this.state.userSelect}`,
-            //not working yet, because we're not getting the value
-            totalSylls: this.state.totalSylls + this.state.userSelectSylls
-        })
-
-        this.getWords(this.state.userSelect);
-        }
-    
-
-
-    render() {
-        return(
-        <div className="Haiku">
-
-            <h2>Haiku</h2>
-                <p>User word: {this.props.word}</p>
-                <p>Line 1: {this.state.line} Syllables: {this.state.totalSylls}</p>
-
-                <h3>Word options:</h3>
-                
-                    <form>
-
-                        <label htmlFor="word">Choose a word:</label>
-
-                        <select 
-                            name="wordSelect" 
-                            id="word"   
-                            onChange={this.handleSelect}
-                        > 
-
-                            {   
-                            this.state.results.map((word) => {
-
-                                //store word and syllable count in obkject so that we can pass it in as the value
-                                // const wordPlusSyll = {'word': `${word.word}`, 'syll':`${word.numSyllables}`}
-                                
-                                return (
-                                    word.word !== '.'
-                                    ? <option 
-                                        key={word.score} 
-                                        // value={wordPlusSyll}
-                                        value={word.word}
-                                        >
-                                            Word:{word.word} (# of syllables: {word.numSyllables})
-                                        </option>
-                                    : null
-                                )   
-                            })
-                            }
-                        </select>
-
-                        <button onClick={this.handleSubmit}>Pick Word</button>
-                    </form>
-            
-            </div>
-        )
-    }
-
+        {/* If the remaining sylls = 0 AND if line number is 3 */}
+        {/* {Condition to make the button appear when the syllables = 17 OR if syls remain = 0 and line3
+            ? <button>Save haiku</button>
+                //push to dbref
+            : ''
+            } */}
+      </section>
+    );
+  }
 }
 
 export default Haiku;

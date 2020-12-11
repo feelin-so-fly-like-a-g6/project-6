@@ -1,9 +1,14 @@
 import { Component } from "react";
 import "./App.css";
 import Header from "./Header";
-import Search from "./Search";
+import Modal from './Modal'
+import Intro from "./Intro";
+import Verse from "./Verse";
+import Haiku from "./Haiku";
+import Logbook from "./Logbook";
 import Footer from "./Footer";
-import Compose from "./Compose";
+import Finish from "./Finish";
+
 
 // PSEUDO CODE
 // User inputs a first word - we grab that input value
@@ -30,38 +35,142 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchQuery: {
-        word: "",
-
-        numSyllables: "",
-
-      },
+      verseVisible: 0,
+      line1: [],
+      line2: [],
+      line3: [],
+      headerVisible: false,
+      modalVisible: false,
+      allHaikus: [],
     };
   }
 
-  updateSearchQuery = ({ word, numSyllables }) => {
+  //Function to set the state of the line - will be passed as props to the verse
+  updateHaiku = (numberOfLine, lineText) => {
+    //storing the line number in a variable
+    const line = `line${numberOfLine}`;
     this.setState({
-      searchQuery: {
-        word: word,
-        numSyllables: numSyllables,
-      },
+      [line]: lineText,
     });
   };
+
+  //function to change which verse is being/displayed composed on the page
+  changeVerseVisible = () => {
+    this.setState({
+      verseVisible: ++this.state.verseVisible,
+    });
+    //also show the header, when the verse is visible
+    this.setState({
+      headerVisible: true,
+    });
+  };
+
+  //function to allow the user to move to a previous line, mid composition
+  goToPreviousLine = () => {
+    const prevVerseVisible = this.state.verseVisible - 1;
+    this.setState({
+      verseVisible: prevVerseVisible,
+    });
+  };
+
+  //function to set the sate of allHaikus - aka populate the array from Firebase
+  getHaikus = (array) => {
+    this.setState({
+      allHaikus: array,
+    });
+  };
+
+  //function to Toggle Modal
+  toggleModal = () => {
+    this.setState({
+      modalVisible: !this.state.modalVisible
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <Header />
+        {this.state.verseVisible === 0 && (
+          <>
+            <Intro changeVerseVisible={this.changeVerseVisible} />
+          </>
+        )}
+
+        {/* Display only once the user clicks on 'create your own' - which sets the state to true */}
+        {this.state.headerVisible 
+        ? <Header 
+            modalVisible={this.state.modalVisible}
+            toggleModal={this.toggleModal}/> 
+        : null}
+
+        {/* Display the modal based on the state */}
+        {this.state.modalVisible
+        ?   < Modal toggleModal={this.toggleModal}/>
+        : null
+        }
+      
 
         <main>
+          
 
-          <Search updateSearchQuery={this.updateSearchQuery} />
+          {this.state.verseVisible === 1 && (
+            <Verse
+              updateHaiku={this.updateHaiku}
+              lineNumber={1}
+              line={this.state.line1}
+              totalNumSyllables={5}
+              changeVerseVisible={this.changeVerseVisible}
+            />
+          )}
 
-          <Compose 
-            word={this.state.word}
-            sylls={this.state.numberOfSylls}
-          />
-          {/* Strech goal: display haikus */}
+          {this.state.verseVisible === 2 && (
+            <Verse
+              updateHaiku={this.updateHaiku}
+              lineNumber={2}
+              line={this.state.line2}
+              totalNumSyllables={7}
+              changeVerseVisible={this.changeVerseVisible}
+              goToPreviousLine={this.goToPreviousLine}
+            />
+          )}
 
+
+          {this.state.verseVisible === 3 && (
+            <Verse
+              updateHaiku={this.updateHaiku}
+              lineNumber={3}
+              line={this.state.line3}
+              totalNumSyllables={5}
+              startAgain={this.startAgain}
+              changeVerseVisible={this.changeVerseVisible}
+              goToPreviousLine={this.goToPreviousLine}
+            />
+          )}
+
+          {this.state.verseVisible < 4 && this.state.verseVisible > 0 && (
+            <Haiku
+              line1={this.state.line1}
+              line2={this.state.line2}
+              line3={this.state.line3}
+              active={this.state.verseVisible}
+            />
+          )}
+
+          {this.state.verseVisible === 4 && (
+            <Finish
+              line1={this.state.line1}
+              line2={this.state.line2}
+              line3={this.state.line3}
+            />
+          )}
+
+
+          {this.state.verseVisible <= 4 && this.state.verseVisible > 0 && (
+            <Logbook
+              allHaikus={this.state.allHaikus}
+              getHaikus={this.getHaikus}
+            />
+          )}
         </main>
 
         <Footer />

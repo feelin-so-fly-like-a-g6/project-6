@@ -1,19 +1,19 @@
-function Header () {
-    return(
-        <header>
-            <h1>Haikus Ahoy!</h1>
+import { Component } from 'react';
+import { GiShipWheel } from 'react-icons/gi';
 
-            <h2>Knowing the Ropes</h2>
+class Header extends Component {
+    render(){
+        return(
+            <header>
+                <h1>Haikus Ahoy!</h1>
+    
+                <span className="flexContainer">< GiShipWheel/><h2>Knowing The Ropes</h2></span>
 
-            <h3>Intro to Haikus</h3>
-            <p>Haiku is a type of short form poetry originally from Japan. They consist  of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.</p>
-
-            <h3>How to make your own:</h3>
-            <p>Specific instructions for app go here:</p>
-
-
-        </header>
-    )
+                <button onClick={this.props.toggleModal}>Click here for instructions</button>
+    
+            </header>
+        )
+    }
 }
 
 export default Header
