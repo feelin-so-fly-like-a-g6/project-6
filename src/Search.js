@@ -82,8 +82,8 @@ class Search extends Component {
       //this function updates the state in app.js with the word that user clicked and the number of syllables in that word
       this.props.updateSearchQuery(data[0]);
     });
-
   };
+
   
   render() {
     return (
@@ -113,8 +113,10 @@ class Search extends Component {
             this.state.suggestions.map((word) => {
               return (
                 <li
+                  tabIndex="0"
                   key={word.score}
                   onClick={this.getWordInfo}
+                  onKeyDown={this.getWordInfo}
                   data-name={word.word}
                 >
                   {word.word}
