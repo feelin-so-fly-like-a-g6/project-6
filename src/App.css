@@ -114,7 +114,6 @@ h2 {
   text-shadow: 3px 3px 4px rgb(0, 24, 15);
   transition: 0.5s;
   color: #ffffb0;
-  margin-top: 300px;
   font-family: 'Kanit', sans-serif;
   font-weight: 700;
 }
@@ -283,6 +282,26 @@ input#search:focus:active {
   border: 1px solid #ffffb0;
   box-shadow: 0px 0px 3px #ffffb0;
 }
+
+.verse button,
+.finish button {
+  background-color: #004643;
+  color: #ffffb0;
+  border: 1px solid #ffffb0;
+  border-radius: 15px;
+  padding: 1.5rem 2rem;
+  margin: 5px;
+  font-size: 1.6rem;
+}
+
+.verse button:hover,
+.verse button:focus,
+.finish button:hover,
+.finish button:focus {
+  background-color: #4bff72;
+  color: #004643;
+}
+
 label {
   font-size: 2rem;
 }

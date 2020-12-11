@@ -85,6 +85,7 @@ class Search extends Component {
       this.props.updateSearchQuery(data[0]);
     });
   };
+  
   render() {
     return (
       <section className="Search">

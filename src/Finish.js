@@ -3,9 +3,7 @@ import firebase from "./firebase";
 import Haiku from "./Haiku";
 
 class Finish extends Component {
-  saveHaiku = (e) => {
-    e.preventDefault();
-
+  saveHaiku = () => {
     //create haiku object:
     let haiku = {
       line1:
@@ -34,18 +32,21 @@ class Finish extends Component {
     //Store the database reference in a variable
     const dbRef = firebase.database().ref();
     dbRef.push(haiku);
+    //hide the button
+    document.querySelector(".save").style.display = 'none';
   };
 
   render() {
     return (
-      <div>
-        <h1>Finish</h1>
+      <div className="finish">
+        <h2>Smooth Sailing! Your haiku is complete.</h2>
+        <button className="save" onClick={this.saveHaiku}>Save to Log Book</button>
         <Haiku
           line1={this.props.line1}
           line2={this.props.line2}
           line3={this.props.line3}
         />
-        <button onClick={this.saveHaiku}>Save haiku</button>
+        
       </div>
     );
   }
