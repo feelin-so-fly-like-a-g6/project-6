@@ -2,26 +2,6 @@ import { Component } from "react";
 
 class Haiku extends Component {
 
- 
-  // //function to highlight the word in progress (or something?)
-  // highlight = () => {
-
-  //   const activeArray = this.props[`line${this.props.active}`]
-
-
-  //   console.log(activeArray);
-  //   //console.log(activeArray)
-  //   //setState
-  //   // this.setState({
-  //   // })
-  // }
-
-
-  // componentDidUpdate(){
-  //   this.highlight();
-  // }
-
-
   printLine(lineNumber){
     // checks if the line is empty
     if (this.props[`line${lineNumber}`].length !== 0){

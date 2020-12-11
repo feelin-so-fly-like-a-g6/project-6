@@ -111,8 +111,6 @@ class App extends Component {
       
 
         <main>
-          
-
           {this.state.verseVisible === 1 && (
             <Verse
               updateHaiku={this.updateHaiku}
@@ -122,7 +120,7 @@ class App extends Component {
               changeVerseVisible={this.changeVerseVisible}
             />
           )}
-
+          
           {this.state.verseVisible === 2 && (
             <Verse
               updateHaiku={this.updateHaiku}

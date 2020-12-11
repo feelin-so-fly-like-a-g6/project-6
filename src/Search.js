@@ -37,7 +37,6 @@ class Search extends Component {
             return item;
             
             }
-            console.log(item.word.charAt(0).toUpperCase() + item.word.slice(1))
             // item.word.charAt(0).toUpperCase() + item.word.slice(1)
             return item.word.charAt(0).toUpperCase() + item.word.slice(1);
             //splice to only get 5 word autocompletions
@@ -80,7 +79,6 @@ class Search extends Component {
         md: "s",
       },
     }).then(({ data }) => {
-      console.log(data[0]);
       //this function updates the state in app.js with the word that user clicked and the number of syllables in that word
       this.props.updateSearchQuery(data[0]);
     });

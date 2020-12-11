@@ -29,6 +29,7 @@ html {
   background-image: linear-gradient(rgba(0, 70, 67, 0.9), rgba(0, 70, 67, 0.9)), url(./assets/boatsAndWaves.jpg) ;
   background-size: cover;
   text-align: center;
+  height: 100vh;
 }
 
 h1,
@@ -93,7 +94,7 @@ h2 {
   background-image: url(./assets/circleBrush.png);
   background-repeat: no-repeat;
   background-position: center;
-  height: 1000px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -277,6 +278,7 @@ input#search {
   text-align: center;
   padding: 1.5rem 2rem;
   margin-top: 50px;
+  border: 1px solid transparent;
 }
 input#search:hover:active,
 input#search:focus:active {

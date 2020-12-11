@@ -35,9 +35,9 @@ class Modal extends Component {
                         <li>If you want to change your haiku in progress, click on the “go to   previous line” button. You will then be able to remove words and  obtain new suggestions. </li>
                     </ul>
 
-                    <h3>Starting over:</h3>
+                    <h3>Clear line:</h3>
                     <ul>
-                        <li>Clicking on the “start over” button will clear your haiku in    progress and bring you back to the beginning!</li>
+                        <li>Clicking on the “clear line” button will clear your line in progress!</li>
                     </ul>
 
                     <p>Once you have finished your haiku, you may save it to the log book for other guests to read.</p>

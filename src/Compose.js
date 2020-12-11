@@ -61,7 +61,6 @@ class Compose extends Component {
         .reduce((accumulator, currentValue) => {
           return accumulator + currentValue;
         });
-      console.log(numOfFilledSylls);
       return numOfFilledSylls;
     } else {
       return 0;
@@ -182,7 +181,6 @@ class Compose extends Component {
       () => {
         //if line in prgress empty make verse update -> search appears
         if(!this.state.lineInProgress===[]){
-          console.log('line empty')
           this.props.reRenderVerse();
         }
         //update haiku with new line in progress
@@ -268,7 +266,7 @@ class Compose extends Component {
               className="removeEverything"
               onClick={this.removeEverything}
             >
-              Start over
+              Clear line
             </button>
           </div>
         )}
