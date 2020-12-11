@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/feelin-so-fly-like-a-g6/project-6/static/css/main.da57ea15.chunk.css",
-    "main.js": "/feelin-so-fly-like-a-g6/project-6/static/js/main.162fa64a.chunk.js",
-    "main.js.map": "/feelin-so-fly-like-a-g6/project-6/static/js/main.162fa64a.chunk.js.map",
-    "runtime-main.js": "/feelin-so-fly-like-a-g6/project-6/static/js/runtime-main.1d5d3be0.js",
-    "runtime-main.js.map": "/feelin-so-fly-like-a-g6/project-6/static/js/runtime-main.1d5d3be0.js.map",
-    "static/js/2.8f2cd48e.chunk.js": "/feelin-so-fly-like-a-g6/project-6/static/js/2.8f2cd48e.chunk.js",
-    "static/js/2.8f2cd48e.chunk.js.map": "/feelin-so-fly-like-a-g6/project-6/static/js/2.8f2cd48e.chunk.js.map",
-    "static/js/3.c4b71dd7.chunk.js": "/feelin-so-fly-like-a-g6/project-6/static/js/3.c4b71dd7.chunk.js",
-    "static/js/3.c4b71dd7.chunk.js.map": "/feelin-so-fly-like-a-g6/project-6/static/js/3.c4b71dd7.chunk.js.map",
-    "index.html": "/feelin-so-fly-like-a-g6/project-6/index.html",
-    "static/css/main.da57ea15.chunk.css.map": "/feelin-so-fly-like-a-g6/project-6/static/css/main.da57ea15.chunk.css.map",
-    "static/js/2.8f2cd48e.chunk.js.LICENSE.txt": "/feelin-so-fly-like-a-g6/project-6/static/js/2.8f2cd48e.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/feelin-so-fly-like-a-g6/project-6/static/media/circleBrush.f58e87a0.png"
+    "main.css": "/project-6/static/css/main.cc9cefbc.chunk.css",
+    "main.js": "/project-6/static/js/main.713e73cb.chunk.js",
+    "main.js.map": "/project-6/static/js/main.713e73cb.chunk.js.map",
+    "runtime-main.js": "/project-6/static/js/runtime-main.f1eb2ca4.js",
+    "runtime-main.js.map": "/project-6/static/js/runtime-main.f1eb2ca4.js.map",
+    "static/js/2.447bc54c.chunk.js": "/project-6/static/js/2.447bc54c.chunk.js",
+    "static/js/2.447bc54c.chunk.js.map": "/project-6/static/js/2.447bc54c.chunk.js.map",
+    "static/js/3.4ec8870d.chunk.js": "/project-6/static/js/3.4ec8870d.chunk.js",
+    "static/js/3.4ec8870d.chunk.js.map": "/project-6/static/js/3.4ec8870d.chunk.js.map",
+    "index.html": "/project-6/index.html",
+    "static/css/main.cc9cefbc.chunk.css.map": "/project-6/static/css/main.cc9cefbc.chunk.css.map",
+    "static/js/2.447bc54c.chunk.js.LICENSE.txt": "/project-6/static/js/2.447bc54c.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/project-6/static/media/circleBrush.f58e87a0.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.1d5d3be0.js",
-    "static/js/2.8f2cd48e.chunk.js",
-    "static/css/main.da57ea15.chunk.css",
-    "static/js/main.162fa64a.chunk.js"
+    "static/js/runtime-main.f1eb2ca4.js",
+    "static/js/2.447bc54c.chunk.js",
+    "static/css/main.cc9cefbc.chunk.css",
+    "static/js/main.713e73cb.chunk.js"
   ]
 }
