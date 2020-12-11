@@ -377,7 +377,10 @@ footer a {
 
 @media only screen and (max-width: 530px) {
   div.Introduction {
-    max-width: 500px;
+    width: 400px;
+  }
+  .Introduction p {
+    font-size: 1.6rem;
   }
 }
 @media only screen and (max-width: 420px) {
@@ -385,4 +388,10 @@ footer a {
   background-size: 300px 300px;
   background-position: 50% 35%;
 }
+  div.Introduction {
+    width: 310px;
+  }
+  .CreateOwn {
+    font-size: 2rem;
+  }
 }
